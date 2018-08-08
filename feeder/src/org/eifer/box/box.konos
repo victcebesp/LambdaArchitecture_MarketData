@@ -1,0 +1,39 @@
+dsl Konos
+
+Client as Ness (url = "{ness-url}", user = "{ness-user}", password = "{ness-password}", domain = "market", clientID = "")
+	mode = Normal
+	Feeder (schema = dayAheadReport)
+	Feeder (schema = intradayReport)
+	Feeder (schema = masterDataUnit)
+
+Schema dayAheadReport
+	Attribute ts as DateTime
+	Attribute priceZone as Text
+	Attribute volume as Text
+	Attribute price as Text
+	Attribute type as Text
+
+Schema intradayReport
+	Attribute ts as DateTime
+	Attribute priceZone as Text
+	Attribute weightedPrice as Text
+	Attribute id3 as Text
+	Attribute type as Text
+
+Schema masterDataUnit
+	Attribute ts as DateTime
+	Attribute unitID as Text
+	Attribute capacity as Real
+	Attribute unitName as Text
+	Attribute plantID as Text
+	Attribute plantName as Text
+	Attribute connectingArea as Text
+	Attribute source as Text
+	Attribute startDate as Text
+	Attribute endDate as Text
+	Attribute latitude as Text
+	Attribute longitude as Text
+	Attribute country as Text
+	Attribute reportReason as Text
+	Attribute companyName as Text
+	Attribute companyID as Text

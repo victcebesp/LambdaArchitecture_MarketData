@@ -1,0 +1,20 @@
+dsl Konos
+
+Client as Ness (url = "{ness-url}", user = "{ness-user}", password = "{ness-password}", domain = "market", clientID = "")
+	mode = Normal
+	Mounter (schema = dayAheadReport)
+	Mounter (schema = intradayReport)
+
+Schema dayAheadReport
+	Attribute ts as DateTime
+	Attribute priceZone as Text
+	Attribute volume as Text
+	Attribute price as Text
+	Attribute type as Text
+
+Schema intradayReport
+	Attribute ts as DateTime
+	Attribute priceZone as Text
+	Attribute weightedPrice as Text
+	Attribute id3 as Text
+	Attribute type as Text
