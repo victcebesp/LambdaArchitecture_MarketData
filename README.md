@@ -42,7 +42,7 @@ So, in this case and following the structure described above, the project is div
 
 * ### Contributors
 
-For this project, I have received help from different people that has more experience than me of knowledge. To be more specific:
+For this project, I have received help from different people that have more experience than me of knowledge. To be more specific:
 
 Jose Juan Hernández Cabrera
 
