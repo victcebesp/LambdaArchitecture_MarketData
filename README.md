@@ -12,7 +12,7 @@
     
 * ### Context
 
-    I am doing this project as an internship in EIFER for three months. The main problem is that the dataset is a timeseries oriented dataset, which fits perfectly into a lambda architecture as it could be considered a functional architecture in which all the different events are immutable.
+    I am doing this project as an internship in EIFER for three months. The challenge is to deal with time oriented databases, which fits perfectly into a lambda architecture as it could be considered a functional architecture in which all the different events are immutable.
     
 * ### Lambda Architectures
 ![Lambda architecture image](./lambda_architecture.PNG)
