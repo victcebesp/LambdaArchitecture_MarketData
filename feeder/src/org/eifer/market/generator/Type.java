@@ -2,27 +2,12 @@ package org.eifer.market.generator;
 
 public enum Type {
 
-    HOURLY {
-        @Override
-        public String type(){
-            return "Hour";
-        }
-    },
+    HOURLY("Hour"), QUARTERHOURLY("Quarter-Hour"), HALFHOURLY("Half-Hour");
 
-    QUARTERHOURLY {
-        @Override
-        public String type(){
-            return "Quarter-Hour";
-        }
-    },
+    private final String type;
 
-    HALFHOURLY {
-        @Override
-        public String type(){
-            return "Half-Hour";
-        }
-    };
+    Type (String type) {this.type = type;}
 
-    public abstract String type();
+    public String type(){return this.type;}
 
 }
