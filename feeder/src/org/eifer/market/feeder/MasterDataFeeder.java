@@ -4,10 +4,9 @@ import io.intino.konos.alexandria.Inl;
 import org.eifer.box.ness.TanksConnectors;
 import org.eifer.box.schemas.MasterDataUnit;
 import org.eifer.market.directorywalker.MasterDataDirectoryWalker;
-import org.eifer.market.generators.MasterDataUnitGenerator;
+import org.eifer.market.generator.MasterDataUnitGenerator;
 import org.eifer.market.reader.MasterDataReader;
 
-import javax.print.DocFlavor;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;

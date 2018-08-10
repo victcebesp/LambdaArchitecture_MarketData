@@ -17,8 +17,6 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.Collections;
 
-import static io.intino.konos.alexandria.Inl.fromMessage;
-import static io.intino.ness.inl.Message.load;
 import static org.slf4j.Logger.ROOT_LOGGER_NAME;
 
 public class NessOperations implements NessOperationsMBean {
@@ -53,14 +51,14 @@ public class NessOperations implements NessOperationsMBean {
 	}
 
 	public boolean customReflow(String reflowConfiguration) {
-		return reflow(fromMessage(load(reflowConfiguration), ReflowConfiguration.class));
+		return reflow(io.intino.konos.alexandria.Inl.fromMessage(io.intino.ness.inl.Message.load(reflowConfiguration), ReflowConfiguration.class));
 	}
 
 	private boolean reflow(ReflowConfiguration configuration) {
 		logger.info("Starting Reflow...");
 		assistant.before();
 		TanksConnectors.unregister();
-		this.session = box.datalake().reflow(configuration, new ReflowDispatcher(TanksConnectors.byName(configuration.tankList().stream().map(t -> t.name().toLowerCase()).collect(java.util.stream.Collectors.toList())), onBlock(), onFinish()));
+		this.session = box.datalake().reflow(configuration, new ReflowDispatcher(TanksConnectors.byName(configuration.tankList().stream().map(t -> t.name()).collect(java.util.stream.Collectors.toList())), onBlock(), onFinish()));
 		final Graph graph = assistant.graph();
 		try {
 			if (graph.store() instanceof FileSystemStore && configuration.cleanStore())

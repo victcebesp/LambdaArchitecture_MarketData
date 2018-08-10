@@ -1,4 +1,4 @@
-package org.eifer.market.generators;
+package org.eifer.market.generator;
 
 import org.eifer.box.schemas.DayAheadReport;
 import org.eifer.market.parser.VerticalDayAheadDateTimeParser;
@@ -6,7 +6,7 @@ import org.eifer.market.parser.VerticalDayAheadDateTimeParser;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.eifer.market.generators.Type.HOURLY;
+import static org.eifer.market.generator.Type.HOURLY;
 
 public class VerticalDayAheadReportGenerator implements DayAheadGenerator {
 

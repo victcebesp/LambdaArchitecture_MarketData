@@ -1,4 +1,4 @@
-package org.eifer.market.generators;
+package org.eifer.market.generator;
 
 import org.eifer.box.schemas.IntradayReport;
 import org.eifer.market.parser.IntradayDateTimeParser;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.eifer.market.generators.Type.*;
+import static org.eifer.market.generator.Type.*;
 
 public class IntradayReportGenerator {
 

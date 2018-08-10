@@ -1,4 +1,4 @@
-package org.eifer.market.generators;
+package org.eifer.market.generator;
 
 import org.eifer.box.schemas.DayAheadReport;
 

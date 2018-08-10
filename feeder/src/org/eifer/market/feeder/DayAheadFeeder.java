@@ -5,8 +5,8 @@ import org.eifer.box.ness.TanksConnectors;
 import org.eifer.box.schemas.DayAheadReport;
 import org.eifer.market.directorywalker.HorizontalDayAheadDirectoryWalker;
 import org.eifer.market.directorywalker.VerticalDayAheadDirectoryWalker;
-import org.eifer.market.generators.HorizontalDayAheadReportGenerator;
-import org.eifer.market.generators.VerticalDayAheadReportGenerator;
+import org.eifer.market.generator.HorizontalDayAheadReportGenerator;
+import org.eifer.market.generator.VerticalDayAheadReportGenerator;
 import org.eifer.market.reader.DayAheadReader;
 
 import java.io.IOException;

@@ -4,7 +4,7 @@ import io.intino.konos.alexandria.Inl;
 import org.eifer.box.ness.TanksConnectors;
 import org.eifer.box.schemas.IntradayReport;
 import org.eifer.market.directorywalker.IntradayDirectoryWalker;
-import org.eifer.market.generators.IntradayReportGenerator;
+import org.eifer.market.generator.IntradayReportGenerator;
 import org.eifer.market.reader.IntradayReader;
 
 import java.io.IOException;

@@ -1,8 +1,7 @@
 import org.eifer.box.schemas.IntradayReport;
-import org.eifer.market.generators.IntradayReportGenerator;
+import org.eifer.market.generator.IntradayReportGenerator;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

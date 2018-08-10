@@ -1,4 +1,4 @@
-package org.eifer.market.generators;
+package org.eifer.market.generator;
 
 import org.eifer.box.schemas.MasterDataUnit;
 import org.eifer.market.parser.MasterDataDateTimeParser;

@@ -1,5 +1,5 @@
 import org.eifer.box.schemas.DayAheadReport;
-import org.eifer.market.generators.HorizontalDayAheadReportGenerator;
+import org.eifer.market.generator.HorizontalDayAheadReportGenerator;
 import org.junit.Test;
 
 import java.util.Arrays;
