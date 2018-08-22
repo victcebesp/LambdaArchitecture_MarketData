@@ -26,7 +26,7 @@ public class Main {
 		FeederBox box = new FeederBox(args);
 		box.open();
 
-        List<String> epexAccountData = Files.readAllLines(Paths.get("./epex_account_data.txt"));
+        List<String> epexAccountData = Files.readAllLines(Paths.get("C:\\Users\\ceballos\\IdeaProjects\\EnergyMarket\\feeder\\epex_account_data.txt"));
         String server = epexAccountData.get(0);
         String username = epexAccountData.get(1);
         String password = epexAccountData.get(2);
