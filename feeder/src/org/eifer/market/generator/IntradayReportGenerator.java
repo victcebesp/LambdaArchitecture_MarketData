@@ -36,6 +36,27 @@ public class IntradayReportGenerator {
 
     }
 
+    private Map<String, Map<Field, Integer>> createIndexes() {
+
+        Map<String, Map<Field, Integer>> createdIndexes = new HashMap<>();
+
+        createdIndexes.put("DE-AT", createFieldsMap());
+        createdIndexes.put("FR", createFieldsMap());
+        createdIndexes.put("CH", createFieldsMap());
+
+        return createdIndexes;
+    }
+
+    private Map<Field, Integer> createFieldsMap() {
+        Map<Field, Integer> fieldsMap = new EnumMap<>(Field.class);
+        fieldsMap.put(Field.DATE, null);
+        fieldsMap.put(Field.FROM, null);
+        fieldsMap.put(Field.ID3, null);
+        fieldsMap.put(Field.WEIGHTEDPRICE, null);
+
+        return fieldsMap;
+    }
+
     private void generateFieldIndexes(String record, String prizeZone) {
         Map<Field, Integer> generatedPriceZoneFields = createFieldsMap();
         String[] fields = record.split(",");
@@ -51,16 +72,6 @@ public class IntradayReportGenerator {
                 generatedPriceZoneFields.put(Field.FROM, i);
 
         indexes.put(prizeZone, generatedPriceZoneFields);
-    }
-
-    private Map<Field, Integer> createFieldsMap() {
-        Map<Field, Integer> fieldsMap = new EnumMap<>(Field.class);
-        fieldsMap.put(Field.DATE, null);
-        fieldsMap.put(Field.FROM, null);
-        fieldsMap.put(Field.ID3, null);
-        fieldsMap.put(Field.WEIGHTEDPRICE, null);
-
-        return fieldsMap;
     }
 
     private IntradayReport generateIntradayReportEventFrom(String record, String priceZone) {
@@ -87,16 +98,5 @@ public class IntradayReportGenerator {
         else return HOURLY.type();
     }
 
-
-    private Map<String, Map<Field, Integer>> createIndexes() {
-
-        Map<String, Map<Field, Integer>> createdIndexes = new HashMap<>();
-
-        createdIndexes.put("DE-AT", createFieldsMap());
-        createdIndexes.put("FR", createFieldsMap());
-        createdIndexes.put("CH", createFieldsMap());
-
-        return createdIndexes;
-    }
 
 }

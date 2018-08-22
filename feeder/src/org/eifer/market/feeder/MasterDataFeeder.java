@@ -1,6 +1,7 @@
 package org.eifer.market.feeder;
 
 import io.intino.konos.alexandria.Inl;
+import org.eifer.box.FeederBox;
 import org.eifer.box.ness.TanksConnectors;
 import org.eifer.box.schemas.MasterDataUnit;
 import org.eifer.market.directorywalker.MasterDataDirectoryWalker;
@@ -15,7 +16,7 @@ public class MasterDataFeeder implements Feeder {
 
     private final String path;
 
-    public MasterDataFeeder(String path){
+    public MasterDataFeeder(String path) {
         this.path = path;
     }
 

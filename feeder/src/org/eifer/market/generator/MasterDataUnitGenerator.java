@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static org.eifer.box.FeederBox.existingMasterDataUnits;
+import static org.eifer.market.comparator.MasterDataUnitComparator.compare;
+
 public class MasterDataUnitGenerator {
 
     private final Map<String, Integer> indexes;
@@ -53,7 +56,12 @@ public class MasterDataUnitGenerator {
 
             String[] coilFields = coilRecord.get().split(";");
 
-            masterDataUnits.add(createMasterDataUnit(gcilFields, guilFields, pcilFields, coilFields));
+            MasterDataUnit masterDataUnit = createMasterDataUnit(gcilFields, guilFields, pcilFields, coilFields);
+
+            if (isNotAnExistingUnit(masterDataUnit) || hasChanged(masterDataUnit)) {
+                masterDataUnits.add(masterDataUnit);
+                existingMasterDataUnits().put(masterDataUnit.unitID(), masterDataUnit);
+            }
 
         });
 
@@ -78,6 +86,14 @@ public class MasterDataUnitGenerator {
             .reportReason(pcilFields[indexes.get("pcilReportingReason")])
             .plantName(pcilFields[indexes.get("pcilPlantName")])
             .companyName(coilFields[indexes.get("coilCompanyName")]);
+    }
+
+    private boolean hasChanged(MasterDataUnit masterDataUnit) {
+        return !compare(existingMasterDataUnits().get(masterDataUnit.unitID()), masterDataUnit);
+    }
+
+    private boolean isNotAnExistingUnit(MasterDataUnit masterDataUnit) {
+        return existingMasterDataUnits().get(masterDataUnit.unitID()) == null;
     }
 
 }
