@@ -24,7 +24,7 @@ public class MasterDataFeeder implements Feeder {
     public void feedTank() throws IOException {
 
         new MasterDataDirectoryWalker().getFilePaths(path).forEach(p ->
-            getEvents(p).forEach(e -> TanksConnectors.masterDataUnit().feed(Inl.toMessage(e)))
+            getEvents(p).forEach(event -> TanksConnectors.masterDataUnit().feed(Inl.toMessage(event)))
         );
 
     }
