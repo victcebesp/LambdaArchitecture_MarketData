@@ -13,9 +13,11 @@ import static org.eifer.market.comparator.MasterDataUnitComparator.compare;
 public class MasterDataUnitGenerator {
 
     private final Map<String, Integer> indexes;
+    private final Map<String, String> connectingAreaTranslations;
 
     public MasterDataUnitGenerator(List<String> indexesRecords) {
          indexes = new IndexesGenerator().getIndexes(indexesRecords);
+         connectingAreaTranslations = createConnectingAreaTranslationMap();
     }
 
     public List<EexMasterDataUnit> generateAllEvents(Map<String, List<String>> classifiedRecords) {
@@ -73,7 +75,7 @@ public class MasterDataUnitGenerator {
             .capacity(Double.parseDouble(gcilFields[indexes.get("gcilCapacity")].replace(',', '.')) + "MW")
             .ts(new MasterDataDateTimeParser().parseDateTimeToInstant(gcilFields[indexes.get("ts")]))
             .source(guilFields[indexes.get("guilSource")])
-            .connectingArea(guilFields[indexes.get("guilConnectingArea")])
+            .connectingArea(translateConnectingArea(guilFields[indexes.get("guilConnectingArea")]))
             .startDate(guilFields[indexes.get("guilStartDate")])
             .endDate(guilFields[indexes.get("guilEndDate")])
             .unitName(guilFields[indexes.get("guilUnitName")])
@@ -100,6 +102,36 @@ public class MasterDataUnitGenerator {
 
     private boolean isNotAnExistingUnit(EexMasterDataUnit masterDataUnit) {
         return existingMasterDataUnits().get(masterDataUnit.unitID()) == null;
+    }
+
+    private Map<String, String> createConnectingAreaTranslationMap() {
+
+        Map<String, String> translations = new HashMap<>();
+
+        translations.put("10YDE-EON------1", "TenneT (DE) (formerly Transpower, E.ON)");
+        translations.put("10YDE-ENBW-----N", "TransnetBW (formerly EnBW TNG)");
+        translations.put("10YDE-RWENET---I", "Amprion (formerly RWE)");
+        translations.put("10YDE-VE-------2", "50Hertz (formerly VE-T)");
+        translations.put("10YAT-APG------L", "APG");
+        translations.put("10YAT-VKW-UNG--K", "VKW-Netz");
+        translations.put("10YCB-CZECH-REP5", "CEPS");
+        translations.put("10YCH-SWISSGRIDZ", "Swissgrid");
+        translations.put("10YCA-BULGARIA-R", "ESO EAD");
+        translations.put("10YBE----------2", "Elia");
+        translations.put("10YNL----------L", "TenneT (NL) ");
+        translations.put("10YHU-MAVIR----U", "MAVIR");
+        translations.put("37Y701133MH0000P", "GASPOOL");
+        translations.put("21Y-ERTV-------8", "NetConnect Germany (NCG)");
+        translations.put("21Y000000000025G", "MG-OST-AT - Market Area East AT (CEGH)");
+        translations.put("21Y---A001A018-N", "VTP-CH (Swissgas)");
+        translations.put("21Y---A001A001-B", "VOB-CZ (formerly RWE Transgas Net)");
+        translations.put("21X-BG-A-A0A0A-C", "Bulgartransgaz");
+
+        return translations;
+    }
+
+    private String translateConnectingArea(String connectingArea) {
+        return connectingAreaTranslations.get(connectingArea);
     }
 
 }
