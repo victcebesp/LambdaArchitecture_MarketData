@@ -3,7 +3,7 @@ package org.eifer.market.feeder;
 import io.intino.konos.alexandria.Inl;
 import org.eifer.box.FeederBox;
 import org.eifer.box.ness.TanksConnectors;
-import org.eifer.box.schemas.MasterDataUnit;
+import org.eifer.box.schemas.EexMasterDataUnit;
 import org.eifer.market.directorywalker.MasterDataDirectoryWalker;
 import org.eifer.market.generator.MasterDataUnitGenerator;
 import org.eifer.market.reader.MasterDataReader;
@@ -24,12 +24,12 @@ public class MasterDataFeeder implements Feeder {
     public void feedTank() throws IOException {
 
         new MasterDataDirectoryWalker().getFilePaths(path).forEach(p ->
-            getEvents(p).forEach(event -> TanksConnectors.masterDataUnit().feed(Inl.toMessage(event)))
+            getEvents(p).forEach(event -> TanksConnectors.eexMasterDataUnit().feed(Inl.toMessage(event)))
         );
 
     }
 
-    private List<MasterDataUnit> getEvents(String path) {
+    private List<EexMasterDataUnit> getEvents(String path) {
         List<String> records = new MasterDataReader().readRecords(path);
         Map<String, List<String>> classifiedRecords = classifyRecords(records.stream().filter(e -> !e.startsWith("#")).collect(Collectors.toList()));
         List<String> indexesRecords = records.stream().filter(e -> e.startsWith("#")).collect(Collectors.toList());
