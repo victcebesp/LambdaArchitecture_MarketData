@@ -34,7 +34,7 @@ public class Main {
 		//SftpClient dayAheadSftpClient = new DayAheadSftpClient("/eod/market_data/power/spot/csv/")
 		//		.connect(server, username, password)
 		//		.retrieveFilesBetween(2000, 2018);
-//
+
 		//SftpClient intradaySftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/")
 		//		.connect(server, username, password)
 		//		.retrieveFilesBetween(2000, 2018);
@@ -54,14 +54,14 @@ public class Main {
 		//dayAheadSftpClient.closeConnection();
 //		masterDataSftpClient.closeConnection();
 
-		//compressDatalake();
+		//compressAndSortDatalake();
 
 		box.close();
 
 		Runtime.getRuntime().addShutdownHook(new Thread(box::close));
 	}
 
-	private static void compressDatalake() {
+	private static void compressAndSortDatalake() {
 		DatalakeGraph datalake = new Graph().loadStashes("Datalake").as(DatalakeGraph.class);
 		datalake.directory(new File("C:\\Users\\ceballos\\IdeaProjects\\EnergyMarket\\tmp\\ness\\datalake"));
 		datalake.scale(Scale.Day);
