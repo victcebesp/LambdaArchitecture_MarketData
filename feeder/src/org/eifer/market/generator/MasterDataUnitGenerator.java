@@ -72,7 +72,7 @@ public class MasterDataUnitGenerator {
     private EexMasterDataUnit createMasterDataUnit(String[] gcilFields, String[] guilFields, String[] pcilFields, String[] coilFields) {
         return new EexMasterDataUnit()
             .unitID(gcilFields[indexes.get("guilUnitID")])
-            .capacity(Double.parseDouble(gcilFields[indexes.get("gcilCapacity")].replace(',', '.')) + "MW")
+            .capacity(Double.parseDouble(gcilFields[indexes.get("gcilCapacity")].replace(',', '.')) + " MW")
             .ts(new MasterDataDateTimeParser().parseDateTimeToInstant(gcilFields[indexes.get("ts")]))
             .source(guilFields[indexes.get("guilSource")])
             .connectingArea(translateConnectingArea(guilFields[indexes.get("guilConnectingArea")]))
