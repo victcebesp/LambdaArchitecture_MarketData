@@ -1,13 +1,13 @@
 package org.eifer.box;
 
-import org.eifer.box.schemas.MasterDataUnit;
+import org.eifer.box.schemas.EexMasterDataUnit;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class FeederBox extends AbstractBox {
 
-	private static Map<String, MasterDataUnit> existingMasterDataUnits = new HashMap<>();
+	private static Map<String, EexMasterDataUnit> existingMasterDataUnits = new HashMap<>();
 
 	public FeederBox(String[] args) {
 		super(args);
@@ -31,7 +31,7 @@ public class FeederBox extends AbstractBox {
 		super.close();
 	}
 
-	public static Map<String, MasterDataUnit> existingMasterDataUnits() {
+	public static Map<String, EexMasterDataUnit > existingMasterDataUnits() {
 		return existingMasterDataUnits;
 	}
 

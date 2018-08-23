@@ -1,13 +1,13 @@
 package org.eifer.market.comparator;
 
-import org.eifer.box.schemas.MasterDataUnit;
+import org.eifer.box.schemas.EexMasterDataUnit;
 
 public class MasterDataUnitComparator {
 
-    public static boolean compare (MasterDataUnit first, MasterDataUnit second) {
+    public static boolean compare (EexMasterDataUnit first, EexMasterDataUnit second) {
 
         return first.unitID().equals(second.unitID()) &&
-                first.capacity() == (second.capacity()) &&
+                first.capacity().equals(second.capacity()) &&
                 first.unitName().equals(second.unitName()) &&
                 first.plantID().equals(second.plantID()) &&
                 first.plantName().equals(second.plantName()) &&

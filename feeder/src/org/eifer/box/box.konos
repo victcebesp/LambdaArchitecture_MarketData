@@ -4,7 +4,7 @@ Client as Ness (url = "{ness-url}", user = "{ness-user}", password = "{ness-pass
 	mode = Normal
 	Feeder (schema = dayAheadReport)
 	Feeder (schema = intradayReport)
-	Feeder (schema = masterDataUnit)
+	Feeder (schema = eexMasterDataUnit)
 
 Schema dayAheadReport
 	Attribute ts as DateTime
@@ -20,10 +20,10 @@ Schema intradayReport
 	Attribute id3 as Text
 	Attribute type as Text
 
-Schema masterDataUnit
+Schema eexMasterDataUnit
 	Attribute ts as DateTime
 	Attribute unitID as Text
-	Attribute capacity as Real
+	Attribute capacity as Text
 	Attribute unitName as Text
 	Attribute plantID as Text
 	Attribute plantName as Text

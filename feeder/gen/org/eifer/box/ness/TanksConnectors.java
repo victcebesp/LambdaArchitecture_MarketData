@@ -20,13 +20,13 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class TanksConnectors {
-	private static io.intino.konos.datalake.Datalake.Tank masterDataUnit;
+	private static io.intino.konos.datalake.Datalake.Tank eexMasterDataUnit;
 	private static io.intino.konos.datalake.Datalake.Tank intradayReport;
 	private static io.intino.konos.datalake.Datalake.Tank dayAheadReport;
 
 	public static void registerTanks(FeederBox box) {
 		final String clientID = "";
-		masterDataUnit = box.datalake().add("market.masterdataunit");
+		eexMasterDataUnit = box.datalake().add("market.eexmasterdataunit");
 		intradayReport = box.datalake().add("market.intradayreport");
 		dayAheadReport = box.datalake().add("market.dayaheadreport");
 
@@ -34,7 +34,7 @@ public class TanksConnectors {
 
 	public static List<io.intino.konos.datalake.Datalake.Tank> all() {
 		List<io.intino.konos.datalake.Datalake.Tank> tanks = new ArrayList<>();
-		tanks.add(TanksConnectors.masterDataUnit);
+		tanks.add(TanksConnectors.eexMasterDataUnit);
 		tanks.add(TanksConnectors.intradayReport);
 		tanks.add(TanksConnectors.dayAheadReport);
 		return tanks;
@@ -45,8 +45,8 @@ public class TanksConnectors {
 		return tanks.stream().filter(t -> names.contains(t.name())).collect(java.util.stream.Collectors.toList());
 	}
 
-	public static io.intino.konos.datalake.Datalake.Tank masterDataUnit() {
-		return TanksConnectors.masterDataUnit;
+	public static io.intino.konos.datalake.Datalake.Tank eexMasterDataUnit() {
+		return TanksConnectors.eexMasterDataUnit;
 	}
 
 	public static io.intino.konos.datalake.Datalake.Tank intradayReport() {
@@ -60,7 +60,7 @@ public class TanksConnectors {
 
 
 	public static void unregister() {
-		masterDataUnit.unregister();
+		eexMasterDataUnit.unregister();
 		intradayReport.unregister();
 		dayAheadReport.unregister();
 	}

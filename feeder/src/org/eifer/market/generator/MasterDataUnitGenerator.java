@@ -1,13 +1,12 @@
 package org.eifer.market.generator;
 
-import org.eifer.box.schemas.MasterDataUnit;
+import org.eifer.box.schemas.EexMasterDataUnit;
 import org.eifer.market.parser.MasterDataDateTimeParser;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
 import static org.eifer.box.FeederBox.existingMasterDataUnits;
 import static org.eifer.market.comparator.MasterDataUnitComparator.compare;
 
@@ -19,9 +18,9 @@ public class MasterDataUnitGenerator {
          indexes = new IndexesGenerator().getIndexes(indexesRecords);
     }
 
-    public List<MasterDataUnit> generateAllEvents(Map<String, List<String>> classifiedRecords) {
+    public List<EexMasterDataUnit> generateAllEvents(Map<String, List<String>> classifiedRecords) {
 
-        List<MasterDataUnit> masterDataUnits = new ArrayList<>();
+        List<EexMasterDataUnit> masterDataUnits = new ArrayList<>();
 
         List<String> generationCapacityRecords = classifiedRecords.get("GCIL");
         List<String> generationUnitsRecords = classifiedRecords.get("GUIL");
@@ -56,7 +55,7 @@ public class MasterDataUnitGenerator {
 
             String[] coilFields = coilRecord.get().split(";");
 
-            MasterDataUnit masterDataUnit = createMasterDataUnit(gcilFields, guilFields, pcilFields, coilFields);
+            EexMasterDataUnit masterDataUnit = createMasterDataUnit(gcilFields, guilFields, pcilFields, coilFields);
 
             if (isNotAnExistingUnit(masterDataUnit) || hasChanged(masterDataUnit)) {
                 masterDataUnits.add(masterDataUnit);
@@ -65,13 +64,13 @@ public class MasterDataUnitGenerator {
 
         });
 
-        return masterDataUnits;
+        return masterDataUnits.stream().sorted(comparing(a -> a.ts().toString())).collect(Collectors.toList());
     }
 
-    private MasterDataUnit createMasterDataUnit(String[] gcilFields, String[] guilFields, String[] pcilFields, String[] coilFields) {
-        return new MasterDataUnit()
+    private EexMasterDataUnit createMasterDataUnit(String[] gcilFields, String[] guilFields, String[] pcilFields, String[] coilFields) {
+        return new EexMasterDataUnit()
             .unitID(gcilFields[indexes.get("guilUnitID")])
-            .capacity(Double.parseDouble(gcilFields[indexes.get("gcilCapacity")].replace(',', '.')))
+            .capacity(Double.parseDouble(gcilFields[indexes.get("gcilCapacity")].replace(',', '.')) + "MW")
             .ts(new MasterDataDateTimeParser().parseDateTimeToInstant(gcilFields[indexes.get("ts")]))
             .source(guilFields[indexes.get("guilSource")])
             .connectingArea(guilFields[indexes.get("guilConnectingArea")])
@@ -83,16 +82,23 @@ public class MasterDataUnitGenerator {
             .latitude(pcilFields[indexes.get("pcilLatitude")])
             .longitude(pcilFields[indexes.get("pcilLongitude")])
             .companyID(pcilFields[indexes.get("coilCompanyID")])
-            .reportReason(pcilFields[indexes.get("pcilReportingReason")])
+            .reportReason(toEnglish(pcilFields[indexes.get("pcilReportingReason")]))
             .plantName(pcilFields[indexes.get("pcilPlantName")])
             .companyName(coilFields[indexes.get("coilCompanyName")]);
     }
 
-    private boolean hasChanged(MasterDataUnit masterDataUnit) {
+    private String toEnglish(String pcilReportingReason) {
+        if (pcilReportingReason.equals("gesetzlich")) return "legally obliged";
+        if (pcilReportingReason.equals("freiwillig")) return "voluntary";
+        if (pcilReportingReason.equals("gesetzlich und freiwillig")) return "legally obliged and voluntary";
+        else return "unknown";
+    }
+
+    private boolean hasChanged(EexMasterDataUnit masterDataUnit) {
         return !compare(existingMasterDataUnits().get(masterDataUnit.unitID()), masterDataUnit);
     }
 
-    private boolean isNotAnExistingUnit(MasterDataUnit masterDataUnit) {
+    private boolean isNotAnExistingUnit(EexMasterDataUnit masterDataUnit) {
         return existingMasterDataUnits().get(masterDataUnit.unitID()) == null;
     }
 
