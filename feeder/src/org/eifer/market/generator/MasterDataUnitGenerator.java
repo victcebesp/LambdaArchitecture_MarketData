@@ -82,12 +82,12 @@ public class MasterDataUnitGenerator {
             .latitude(pcilFields[indexes.get("pcilLatitude")])
             .longitude(pcilFields[indexes.get("pcilLongitude")])
             .companyID(pcilFields[indexes.get("coilCompanyID")])
-            .reportReason(toEnglish(pcilFields[indexes.get("pcilReportingReason")]))
+            .reportReason(translateToEnglish(pcilFields[indexes.get("pcilReportingReason")]))
             .plantName(pcilFields[indexes.get("pcilPlantName")])
             .companyName(coilFields[indexes.get("coilCompanyName")]);
     }
 
-    private String toEnglish(String pcilReportingReason) {
+    private String translateToEnglish(String pcilReportingReason) {
         if (pcilReportingReason.equals("gesetzlich")) return "legally obliged";
         if (pcilReportingReason.equals("freiwillig")) return "voluntary";
         if (pcilReportingReason.equals("gesetzlich und freiwillig")) return "legally obliged and voluntary";
