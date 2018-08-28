@@ -58,6 +58,7 @@ public class IndexesGenerator {
             else if (splittedRecord[i].equals("[Source]")) indexes.put("guilSource", i);
             else if (splittedRecord[i].equals("[StartDate]")) indexes.put("guilStartDate", i);
             else if (splittedRecord[i].equals("[EndDate]")) indexes.put("guilEndDate", i);
+            else if (splittedRecord[i].equals("[Commercialisation]")) indexes.put("guilCommercialisation", i);
         }
     }
 

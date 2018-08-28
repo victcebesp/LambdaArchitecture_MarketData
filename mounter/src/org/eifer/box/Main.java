@@ -21,7 +21,9 @@ public class Main {
 				.blockSize(50000)
 				.cleanStore(true)
 				.tankList(Arrays.asList(new ReflowConfiguration.Tank().name("market.dayaheadreport"),
-						new ReflowConfiguration.Tank().name("market.intradayreport"))));
+						new ReflowConfiguration.Tank().name("market.intradayreport"),
+						new ReflowConfiguration.Tank().name("market.eexMasterDataUnit"),
+						new ReflowConfiguration.Tank().name("market.actualGeneration"))));
 
 		new NessOperations(box).customReflow(message.toString());
 

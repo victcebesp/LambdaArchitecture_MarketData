@@ -5,6 +5,7 @@ Client as Ness (url = "{ness-url}", user = "{ness-user}", password = "{ness-pass
 	Feeder (schema = dayAheadReport)
 	Feeder (schema = intradayReport)
 	Feeder (schema = eexMasterDataUnit)
+	Feeder (schema = actualGeneration)
 
 Schema dayAheadReport
 	Attribute ts as DateTime
@@ -37,3 +38,10 @@ Schema eexMasterDataUnit
 	Attribute reportReason as Text
 	Attribute companyName as Text
 	Attribute companyID as Text
+	Attribute commercialisation as Text
+
+Schema actualGeneration
+	Attribute ts as DateTime
+	Attribute unitID as Text
+	Attribute actualGeneration as Text
+	Attribute country as Text

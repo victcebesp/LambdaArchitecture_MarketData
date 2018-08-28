@@ -11,7 +11,9 @@ public class MasterDataUnitComparator {
                 first.unitName().equals(second.unitName()) &&
                 first.plantID().equals(second.plantID()) &&
                 first.plantName().equals(second.plantName()) &&
+
                 first.connectingArea().equals(second.connectingArea()) &&
+
                 first.source().equals(second.source()) &&
                 first.startDate().equals(second.startDate()) &&
                 first.endDate().equals(second.endDate()) &&

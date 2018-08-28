@@ -27,6 +27,6 @@ public class DayAheadReportMounter {
 	}
 
 	private String getDateAndHour(Instant instant) {
-		return instant.toString().substring(0, instant.toString().indexOf(":"));
+		return instant.toString().substring(0, instant.toString().indexOf(':'));
 	}
 }

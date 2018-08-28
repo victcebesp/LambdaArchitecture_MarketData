@@ -20,13 +20,21 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class TanksConnectors {
+	private static io.intino.konos.datalake.Datalake.Tank actualGeneration;
+	private static io.intino.konos.datalake.Datalake.Tank eexMasterDataUnit;
 	private static io.intino.konos.datalake.Datalake.Tank intradayReport;
 	private static io.intino.konos.datalake.Datalake.Tank dayAheadReport;
 
 	public static void registerTanks(MounterBox box) {
 		final String clientID = "";
+		actualGeneration = box.datalake().add("market.actualgeneration");
+		eexMasterDataUnit = box.datalake().add("market.eexmasterdataunit");
 		intradayReport = box.datalake().add("market.intradayreport");
 		dayAheadReport = box.datalake().add("market.dayaheadreport");
+		actualGeneration.handler(new ActualGenerationHandler(box));
+		actualGeneration.flow(clientID != null ? clientID + "-actualgeneration" : null);
+		eexMasterDataUnit.handler(new EexMasterDataUnitHandler(box));
+		eexMasterDataUnit.flow(clientID != null ? clientID + "-eexmasterdataunit" : null);
 		intradayReport.handler(new IntradayReportHandler(box));
 		intradayReport.flow(clientID != null ? clientID + "-intradayreport" : null);
 		dayAheadReport.handler(new DayAheadReportHandler(box));
@@ -35,6 +43,8 @@ public class TanksConnectors {
 
 	public static List<io.intino.konos.datalake.Datalake.Tank> all() {
 		List<io.intino.konos.datalake.Datalake.Tank> tanks = new ArrayList<>();
+		tanks.add(TanksConnectors.actualGeneration);
+		tanks.add(TanksConnectors.eexMasterDataUnit);
 		tanks.add(TanksConnectors.intradayReport);
 		tanks.add(TanksConnectors.dayAheadReport);
 		return tanks;
@@ -45,12 +55,58 @@ public class TanksConnectors {
 		return tanks.stream().filter(t -> names.contains(t.name())).collect(java.util.stream.Collectors.toList());
 	}
 
+	public static io.intino.konos.datalake.Datalake.Tank actualGeneration() {
+		return TanksConnectors.actualGeneration;
+	}
+
+	public static io.intino.konos.datalake.Datalake.Tank eexMasterDataUnit() {
+		return TanksConnectors.eexMasterDataUnit;
+	}
+
 	public static io.intino.konos.datalake.Datalake.Tank intradayReport() {
 		return TanksConnectors.intradayReport;
 	}
 
 	public static io.intino.konos.datalake.Datalake.Tank dayAheadReport() {
 		return TanksConnectors.dayAheadReport;
+	}
+
+	public static class ActualGenerationHandler implements io.intino.konos.datalake.MessageHandler {
+		private final MounterBox box;
+
+		public ActualGenerationHandler(MounterBox box) {
+			this.box = box;
+		}
+
+		public void handle(io.intino.ness.inl.Message m) {
+			try {
+				ActualGenerationMounter mounter = new ActualGenerationMounter();
+				mounter.box = box;
+				mounter.actualGeneration = io.intino.konos.alexandria.Inl.fromMessage(m, org.eifer.box.schemas.ActualGeneration.class);
+				mounter.execute();
+			} catch(Throwable e) {
+				org.slf4j.LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME).error(e.getMessage(), e);
+			}
+		}
+	}
+
+	public static class EexMasterDataUnitHandler implements io.intino.konos.datalake.MessageHandler {
+		private final MounterBox box;
+
+		public EexMasterDataUnitHandler(MounterBox box) {
+			this.box = box;
+		}
+
+		public void handle(io.intino.ness.inl.Message m) {
+			try {
+				EexMasterDataUnitMounter mounter = new EexMasterDataUnitMounter();
+				mounter.box = box;
+				mounter.eexMasterDataUnit = io.intino.konos.alexandria.Inl.fromMessage(m, org.eifer.box.schemas.EexMasterDataUnit.class);
+				mounter.execute();
+			} catch(Throwable e) {
+				org.slf4j.LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME).error(e.getMessage(), e);
+			}
+		}
 	}
 
 	public static class IntradayReportHandler implements io.intino.konos.datalake.MessageHandler {
@@ -92,6 +148,8 @@ public class TanksConnectors {
 	}
 
 	public static void unregister() {
+		actualGeneration.unregister();
+		eexMasterDataUnit.unregister();
 		intradayReport.unregister();
 		dayAheadReport.unregister();
 	}

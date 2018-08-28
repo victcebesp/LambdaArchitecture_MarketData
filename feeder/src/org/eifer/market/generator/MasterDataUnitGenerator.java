@@ -59,7 +59,7 @@ public class MasterDataUnitGenerator {
 
             EexMasterDataUnit masterDataUnit = createMasterDataUnit(gcilFields, guilFields, pcilFields, coilFields);
 
-            if (isNotAnExistingUnit(masterDataUnit) || hasChanged(masterDataUnit)) {
+            if (isUnexistingUnit(masterDataUnit) || hasChanged(masterDataUnit)) {
                 masterDataUnits.add(masterDataUnit);
                 existingMasterDataUnits().put(masterDataUnit.unitID(), masterDataUnit);
             }
@@ -80,13 +80,18 @@ public class MasterDataUnitGenerator {
             .endDate(guilFields[indexes.get("guilEndDate")])
             .unitName(guilFields[indexes.get("guilUnitName")])
             .plantID(guilFields[indexes.get("guilPlantID")])
+            .commercialisation(translateCommercialisation(guilFields[indexes.get("guilCommercialisation")]))
             .country(pcilFields[indexes.get("pcilCountry")])
             .latitude(pcilFields[indexes.get("pcilLatitude")])
             .longitude(pcilFields[indexes.get("pcilLongitude")])
-            .companyID(pcilFields[indexes.get("coilCompanyID")])
             .reportReason(translateToEnglish(pcilFields[indexes.get("pcilReportingReason")]))
             .plantName(pcilFields[indexes.get("pcilPlantName")])
+            .companyID(coilFields[indexes.get("coilCompanyID")])
             .companyName(coilFields[indexes.get("coilCompanyName")]);
+    }
+
+    private String translateCommercialisation(String commercialisation) {
+        return commercialisation.equals("0") ? "mostly OTC" : commercialisation.equals("1") ? "mostly power exchange" : commercialisation;
     }
 
     private String translateToEnglish(String pcilReportingReason) {
@@ -100,7 +105,7 @@ public class MasterDataUnitGenerator {
         return !compare(existingMasterDataUnits().get(masterDataUnit.unitID()), masterDataUnit);
     }
 
-    private boolean isNotAnExistingUnit(EexMasterDataUnit masterDataUnit) {
+    private boolean isUnexistingUnit(EexMasterDataUnit masterDataUnit) {
         return existingMasterDataUnits().get(masterDataUnit.unitID()) == null;
     }
 
@@ -131,7 +136,8 @@ public class MasterDataUnitGenerator {
     }
 
     private String translateConnectingArea(String connectingArea) {
-        return connectingAreaTranslations.get(connectingArea);
+        String translatedConnectedArea = connectingAreaTranslations.getOrDefault(connectingArea, "");
+        return translatedConnectedArea.equals("") ? connectingArea : translatedConnectedArea;
     }
 
 }

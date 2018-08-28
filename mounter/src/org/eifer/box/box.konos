@@ -4,6 +4,8 @@ Client as Ness (url = "{ness-url}", user = "{ness-user}", password = "{ness-pass
 	mode = Normal
 	Mounter (schema = dayAheadReport)
 	Mounter (schema = intradayReport)
+	Mounter (schema = eexMasterDataUnit)
+	Mounter (schema = actualGeneration)
 
 Schema dayAheadReport
 	Attribute ts as DateTime
@@ -18,3 +20,48 @@ Schema intradayReport
 	Attribute weightedPrice as Text
 	Attribute id3 as Text
 	Attribute type as Text
+
+Schema eexMasterDataUnit
+	Attribute ts as DateTime
+	Attribute unitID as Text
+	Attribute capacity as Text
+	Attribute unitName as Text
+	Attribute plantID as Text
+	Attribute plantName as Text
+	Attribute connectingArea as Text
+	Attribute source as Text
+	Attribute startDate as Text
+	Attribute endDate as Text
+	Attribute latitude as Text
+	Attribute longitude as Text
+	Attribute country as Text
+	Attribute reportReason as Text
+	Attribute companyName as Text
+	Attribute companyID as Text
+	Attribute commercialisation as Text
+
+Schema actualGeneration
+	Attribute ts as DateTime
+	Attribute unitID as Text
+	Attribute actualGeneration as Text
+	Attribute country as Text
+
+Schema actualGenerationPoint
+	Attribute ts as DateTime
+	Attribute unitID as Text
+	Attribute capacity as Text
+	Attribute unitName as Text
+	Attribute plantID as Text
+	Attribute plantName as Text
+	Attribute connectingArea as Text
+	Attribute source as Text
+	Attribute startDate as Text
+	Attribute endDate as Text
+	Attribute latitude as Text
+	Attribute longitude as Text
+	Attribute country as Text
+	Attribute reportReason as Text
+	Attribute companyName as Text
+	Attribute companyID as Text
+	Attribute commercialisation as Text
+	Attribute actualGeneration as Text

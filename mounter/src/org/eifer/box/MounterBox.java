@@ -1,6 +1,7 @@
 package org.eifer.box;
 
 import io.intino.tara.magritte.Graph;
+import org.eifer.box.schemas.ActualGenerationPoint;
 import org.eifer.graph.MounterGraph;
 import projection.Report;
 
@@ -10,16 +11,15 @@ import java.util.Map;
 public class MounterBox extends AbstractBox {
 
 	public static Map<String, Report> reports = new LinkedHashMap<>();
+	public static Map<String, ActualGenerationPoint> actualGenerationPoints = new LinkedHashMap<>();
 	private MounterGraph graph;
 
 	public MounterBox(String[] args) {
 		super(args);
-		reports = new LinkedHashMap<>();
 	}
 
 	public MounterBox(MounterConfiguration configuration) {
 		super(configuration);
-		reports = new LinkedHashMap<>();
 	}
 
 	@Override

@@ -4,20 +4,22 @@ Artifact(groupId = "org.eifer", version = "1.0.0") feeder
 	Box(language = "Konos", version = "4.1.2", sdk = "4.1.2")
 	Imports
 		Compile(groupId = "io.intino.konos", artifactId = "alexandria-jmx", version = "1.0.4")
-		Compile("io.intino.konos", "alexandria-ness-accessor", "2.3.0")
+		Compile("io.intino.konos", "alexandria-ness-accessor", "2.4.8")
 		Compile("org.slf4j", "slf4j-log4j12", "1.7.7")
 		Compile(groupId = "com.hierynomus", artifactId = "sshj", version = "0.24.0")
 		Test(groupId = "junit", artifactId = "junit", version = "LATEST")
 	Code (targetPackage = "org.eifer")
 
-	Package(mode = ModulesAndLibrariesLinkedByManifest) as Runnable (mainClass = "org.eifer.box.Main")
+	Package(mode = ModulesAndLibrariesLinkedByManifest) as Runnable(mainClass = "org.eifer.box.Main")
 
 	Parameter(name = "platform_port", defaultValue = "")
 	Parameter(name = "platform_webDirectory", defaultValue = "")
 	Parameter(name = "ness-url")
 	Parameter(name = "ness-user")
 	Parameter(name = "ness-password")
-	Parameter(name = "directory_path")
+	Parameter(name = "directory-path")
+	Parameter(name = "datalake-url")
+	Parameter(name = "destiny-path")
 
 Repository(identifier = "intino-maven")
 	Language(url = "https://artifactory.intino.io/artifactory/releases")
@@ -27,4 +29,6 @@ RunConfiguration dev
 	Argument (name = "ness-url", value = "file://tmp/ness")
 	Argument(name = "ness-user", value = "")
 	Argument(name = "ness-password", value = "")
-	Argument(name = "directory_path", value = "tmp/marketData")
+	Argument(name = "directory-path", value = "tmp/marketData")
+	Argument(name = "datalake-url", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/ness/datalake")
+	Argument(name = "destiny-path", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData/")

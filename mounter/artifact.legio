@@ -4,10 +4,9 @@ Artifact(groupId = "org.eifer", version = "1.0.0") mounter as Product
 	Box(language = "Konos", version = "4.1.2", sdk = "4.1.2")
 	Model(language = "Sumus", version = "7.1.4", sdk = "2.3.2")
 	Imports
-		Compile(groupId = "io.intino.konos", artifactId = "alexandria-core", version = "LATEST")
-		Compile("io.intino.konos", "alexandria-ness-accessor", "LATEST")
+		Compile(groupId = "io.intino.konos", artifactId = "alexandria-jmx", version = "1.0.4")
+		Compile("io.intino.konos", "alexandria-ness-accessor", "2.4.8")
 		Compile("org.slf4j", "slf4j-log4j12", "1.7.7")
-		Compile(groupId = "io.intino.konos", artifactId = "alexandria-jmx", version = "LATEST")
 		Test(groupId = "junit", artifactId = "junit", version = "LATEST")
 	Code (targetPackage = "org.eifer")
 	Package(mode = ModulesAndLibrariesLinkedByManifest) as Runnable (mainClass = "org.eifer.box.Main")
@@ -20,6 +19,7 @@ Artifact(groupId = "org.eifer", version = "1.0.0") mounter as Product
 	Parameter(name = "port", defaultValue = "9000")
 	Parameter(name = "graph_store", defaultValue = "")
 	Parameter(name = "csv_store", defaultValue = "")
+	Parameter(name = "json_store", defaultValue = "")
 
 Repository(identifier = "intino-maven")
 	Language(url = "https://artifactory.intino.io/artifactory/releases")
@@ -31,3 +31,4 @@ RunConfiguration dev
 	Argument(name = "ness-password", value = "")
 	Argument(name = "graph_store", value = "file://tmp/graph")
 	Argument(name = "csv_store", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/csv")
+	Argument(name = "json_store", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/json/")
