@@ -15,7 +15,7 @@
     This project has been developed as an internship at EIFER which lasted three months. The challenge is to deal with time oriented databases folowing a methodology inspired in lambda architectures. Following sections will describe what lambda architectures are and how this project has been addressed.
     
 * ### Lambda Architectures
-![Lambda architecture image](./lambda_architecture.PNG)
+![Lambda architecture image](./readmeImages/lambda_architecture.PNG)
 
 A very good explanation about what a lambda architecture is can be found in [mapr website](https://mapr.com/developercentral/lambda-architecture/).
 
@@ -23,7 +23,7 @@ As previously mentioned, Tara and Intino plugins developed by SIANI have been us
 
 Lambda architectures are focused in the power of the data. That is, data is empowered and is the main asset to take care of. To this end, the core part is the datalake, a database containing all the data of an organization. This data is normally time oriented expressing the events that describe how organizational information has evolved. This datalake is then feeded by different actors entering data from sensors, forms, legacy data, etc. This data is then stored in the datalake and used by the projections (on the right in the picture above) to create the batch views (datamarts). Contrary to classic architectures, these datamarts are not relevant anymore as they can be deleted anytime and reconstructed from the events contained in the datalake. This improves the flexibility of the software developed and minimize the costs of migration.
 
-![Global structure lambda architecture image](./Global.PNG)
+![Global structure lambda architecture image](./readmeImages/Global.PNG)
 
 #### Ness
   
@@ -33,11 +33,11 @@ Once there are events in the tanks, Ness lets you execute a reflow. With this, y
   
 Another Ness feature is that as it uses Java Message Service (JMS), it is able to take advantage of the distributed queues. This will let the datalake scale without any problem. 
 
-![Global structure lambda architecture image](./Ness.PNG)
+![Global structure lambda architecture image](./readmeImages/Ness.PNG)
 
 #### Feeder
 
-![Global structure lambda architecture image](./Feeder.PNG)
+![Global structure lambda architecture image](./readmeImages/Feeder.PNG)
 
 As discussed above, a feeder responsibility is to feed Ness. To achieve this, two main steps need to be done. The first is creating the event from the legacy data, sensors or whatever by developing your own clases. Once you have the events built, you can feed the desire tank by executing the following code provided by Intino:
 
@@ -50,7 +50,7 @@ Once the mounters are declared in the box.konos file, the mounter classes are ge
 
 While all the events are received, the different projections can be built. In the end, the datamart will be produced.
 
-![Global structure lambda architecture image](./Projection.PNG)
+![Global structure lambda architecture image](./readmeImages/Projection.PNG)
 
 * ### Project Structure
 
