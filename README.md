@@ -1,59 +1,1 @@
-# Lambda Architecture. MarketData
-### Applied to electricity market
-
-* ### Description
-
-    MarketData is a Big Data, Data science and Data engineering project in which I have implemented a **lambda architecture** to treat electricity market data. This project has been developed jointly with the European Institute For Energy Research (EIFER) in Karlsruhe, Germany and the University Institute of Intelligent Systems and Numeric Applications in Engineering (SIANI) in Gran Canaria, Spain.
-    
-    To implement the lambda architecture, I have used two IntelliJIDEA plugins developed by SIANI:
-    
-    1. Tara
-    2. Intino
-    
-* ### Context
-
-    I developed this project as an internship at EIFER which spanned three months. The challenge is to deal with time oriented databases, which fit perfectly into a lambda architecture. In addition, it could be considered as a functional architecture because all the different events are immutable.
-    
-* ### Lambda Architectures
-![Lambda architecture image](./lambda_architecture.PNG)
-
-This architecture was designed by Nathan Marz in order to successfully address big data requirements. He came up with this architecture thanks to his experience  working on distributed data processing at Twitter. Some examples of those requirement are:
-* Fault-tolerance against hardware failures and humans errors
-* Support for a variety of use cases that include low latency querying as well as updates
-* Linear scale-out capabilities, meaning that throwing more machines at the problem should help with getting the job done
-* Extensibility so that the system is manageable and can accommodate newer features easily
-
-As you can see in the above picture extracted from [mapr.com](https://mapr.com/developercentral/lambda-architecture/), a lambda architecture is composed of three main parts:
-* **Batch layer:** Manages the master dataset, an immutable-only set of raw data. It also pre-computes query functions which are called batch views.
-* **Serving layer:** Indexes the batch views so they can be queried in low latency. 
-* **Speed layer:** Accommodates all request that are subject to low latency requirements.
-
-Each of such layers can be implemented using a different existing technology like Spark Streaming for the speed layer or Cassendra for the serving layer.
-
-As I previously mentioned, I am using Tara and Intino plugins developed by SIANI. The one that includes the three layers in this case is **Intino**.
-
-* ### Project Structure
-
-A simple way of describing a lambda architecture could be that there are some feeders, each one of it has the responsibility of feeding a tank inside the datalake with the events. As I have just introduced, there will be also a datalake. This is an event container in which the data is already cleaned from the different data sources. Furthermore, mounters can be considered as another element. A mounter is responsible of based on the events in a tank inside the datalake, create a view of that events.
-
-In this case and following the structure described above, this project could be divided in two main modules:
-1. **Feeder module:** In this module you will find everything related with the feeders. Now, there are only four feeders as there are four data sources. You will also find inside this module classes that are responsible of retrieving data form a sftp server, reading the data from the csv inputs and cleaning the source data.
-2. **Mounter module** In the other hand, this module is responsible of creating the different views required by the final users. Nowadays, the final users are interested in a csv view in order to do further analysis, so that is what is been provided.
-
-* ### Contributors
-
-For this project, I have been helped by different people who have more experience or knowledge than me. To be more specific:
-
-Jose Juan Hernández Cabrera
-
-Jose Évora Gómez
-
-Octavio Roncal Andrés
-
-Enrique Kremers
-
-Jan Eberbach
-
-Manuel Eising
-
-Alexander Simons
+# Lambda Architecture. MarketData### Applied to electricity market* ### DescriptionMarketData is a Big Data, Data science and Data engineering project in which I have implemented a **lambda architecture** to treat electricity market data. This project has been developed jointly with the European Institute For Energy Research (EIFER) in Karlsruhe, Germany and the University Institute of Intelligent Systems and Numeric Applications in Engineering (SIANI) in Gran Canaria, Spain.   To implement the lambda architecture, I have used two IntelliJIDEA plugins developed by SIANI:      1. Tara   2. Intino    * ### Context I developed this project as an internship at EIFER which spanned three months. The challenge is to deal with time oriented databases, which fit perfectly into a lambda architecture. In addition, it could be considered as a functional architecture because all the different events are immutable.    * ### Lambda Architectures![Lambda architecture image](./readmeImages/lambda_architecture.PNG)This architecture was designed by Nathan Marz in order to successfully address big data requirements. He came up with this architecture thanks to his experience  working on distributed data processing at Twitter. Some examples of those requirement are:* Fault-tolerance against hardware failures and humans errors* Support for a variety of use cases that include low latency querying as well as updates* Linear scale-out capabilities, meaning that throwing more machines at the problem should help with getting the job done* Extensibility so that the system is manageable and can accommodate newer features easilyAs you can see in the above picture extracted from [mapr.com](https://mapr.com/developercentral/lambda-architecture/), a lambda architecture is composed of three main parts:* **Batch layer:** Manages the master dataset, an immutable-only set of raw data. It also pre-computes query functions which are called batch views.* **Serving layer:** Indexes the batch views so they can be queried in low latency. * **Speed layer:** Accommodates all request that are subject to low latency requirements.Each of such layers can be implemented using a different existing technology like Spark Streaming for the speed layer or Cassendra for the serving layer.As I previously mentioned, I am using Tara and Intino plugins developed in SIANI. The one that includes the three layers is **Intino**.A simple way of describing a lambda architecture could be that there are some feeders, each one of it has the responsibility of feeding a tank inside the datalake with the events. As I have just introduced, there will be also a datalake. This is an event container in which the data is already cleaned from the different data sources. Furthermore, mounters can be considered as another element. A mounter is responsible of based on the events in a tank inside the datalake, create a view of that events.![Global structure lambda architecture image](./readmeImages/Global.PNG)#### Ness  In the above image, it is possible to see that the datalake in Intino is called Ness. Ness is structured internally in tanks. There is a tank for every type of event.   Once there are events in the tanks, Ness lets you execute a reflow. With this, you can send all the events in a tank or many tanks to the subscribed mounter. In this way, the related mounter will receive all the events in a chronological order.  Another Ness feature is that as it uses Java Message Service (JMS), it is able to take advantage of the distributed queues. This will let the datalake scale without any problem. ![Global structure lambda architecture image](./readmeImages/Ness.PNG)#### Feeder![Global structure lambda architecture image](./readmeImages/Feeder.PNG)As discussed above, a feeder responsibility is to feed Ness. To achieve this, two main steps need to be done. The first is creating the event from the legacy data, sensors or whatever by developing your own clases. Once you have the events built, you can feed the desire tank by executing the following code:```javaTanksConnectors.tankName().feed(Inl.toMessage(event)```#### MounterOnce the mounters are declared in the box.konos file, the mounter classes are generated by Intino. Inside each mounter class, a field will be included. That field's type will be the one from the tank that the mounter is subscribed to. So for example when a reflow is done, all the events are going to be received by that field.While all the events are received, the different projections can be built. In the end, the datamart will be produced.![Global structure lambda architecture image](./readmeImages/Projection.PNG)* ### Project StructureIn this case and following the structure described above, this project could be divided in two main modules:1. **Feeder module:** In this module you will find everything related with the feeders. Now, there are only four feeders as there are four data sources. You will also find inside this module classes that are responsible of retrieving data form a sftp server, reading the data from the csv inputs and cleaning the source data.2. **Mounter module** In the other hand, this module is responsible of creating the different views required by the final users. Nowadays, the final users are interested in a csv view in order to do further analysis, so that is what is been provided.* ### ContributorsFor this project, I have been helped by different people who have more experience or knowledge than me. To be more specific:Jose Juan Hernández CabreraJose Évora GómezOctavio Roncal AndrésEnrique KremersJan EberbachManuel EisingAlexander Simons

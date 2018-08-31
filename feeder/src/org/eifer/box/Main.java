@@ -24,10 +24,10 @@ public class Main {
 		FeederBox box = new FeederBox(args);
 		box.open();
 
-        List<String> epexAccountData = Files.readAllLines(Paths.get("C:\\Users\\ceballos\\IdeaProjects\\EnergyMarket\\feeder\\epex_account_data.txt"));
-        String server = epexAccountData.get(0);
-        String username = epexAccountData.get(1);
-        String password = epexAccountData.get(2);
+		List<String> epexAccountData = Files.readAllLines(Paths.get("C:\\Users\\ceballos\\IdeaProjects\\EnergyMarket\\feeder\\epex_account_data.txt"));
+		String server = epexAccountData.get(0);
+		String username = epexAccountData.get(1);
+		String password = epexAccountData.get(2);
 
 		/*SftpClient dayAheadSftpClient = new DayAheadSftpClient("/eod/market_data/power/spot/csv/")
 				.connect(server, username, password)
@@ -46,39 +46,41 @@ public class Main {
 		//		.retrieveFilesBetween(2016, 2018);
 
 
-		String directoryPath = box.configuration().get("directory-path");
+		//String directoryPath = box.configuration().get("directory-path");
 		//new IntradayFeeder(directoryPath).feedTank();
 		//new DayAheadFeeder(directoryPath).feedTank();
 		//new MasterDataFeeder(directoryPath).feedTank();
-		new ActualGenerationFeeder(directoryPath).feedTank();
+		//new ActualGenerationFeeder(directoryPath).feedTank();
 
 		//intradaySftpClient.closeConnection();
 		//dayAheadSftpClient.closeConnection();
 		//masterDataSftpClient.closeConnection();
 		//actualGenerationSftpClient.closeConnection();
 
-		//compressAndSortDatalake(box);
+		compressAndSortDatalake(box);
 
 		box.close();
 
 		Runtime.getRuntime().addShutdownHook(new Thread(box::close));
 	}
 
-	//private static void compressAndSortDatalake(FeederBox box) {
-	//	DatalakeGraph datalake = new Graph().loadStashes("Datalake").as(DatalakeGraph.class);
-	//	datalake.directory(new File(box.configuration.get("datalake-url")));
-	//	datalake.scale(Scale.Day);
-	//	Tank intradayTank = datalake.add("market.intradayreport");
-	//	intradayTank.sort();
-	//	intradayTank.seal();
-//
-	//	Tank dayAheadTank = datalake.add("market.dayaheadreport");
-	//	dayAheadTank.sort();
-	//	dayAheadTank.seal();
+	private static void compressAndSortDatalake(FeederBox box) {
+		DatalakeGraph datalake = new Graph().loadStashes("Datalake").as(DatalakeGraph.class);
+		datalake.directory(new File(box.configuration.get("datalake-url")));
+		datalake.scale(Scale.Day);
+
+		Tank intradayTank = datalake.add("market.eexmasterdataunit");
+		intradayTank.sort();
+		intradayTank.seal();
+
+		//Tank dayAheadTank = datalake.add("market.dayaheadreport");
+		//dayAheadTank.sort();
+		//dayAheadTank.seal();
 
 //		Tank intradayTank = datalake.add("market.eexmasterdataunit");
 //		intradayTank.sort();
 //		intradayTank.seal();
 
 	}
+}
 //}

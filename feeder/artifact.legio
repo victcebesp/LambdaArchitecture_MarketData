@@ -1,7 +1,7 @@
 dsl Legio
 
 Artifact(groupId = "org.eifer", version = "1.0.0") feeder
-	Box(language = "Konos", version = "4.1.2", sdk = "4.1.2")
+	Box(language = "Konos", version = "4.3.0", sdk = "4.3.0")
 	Imports
 		Compile(groupId = "io.intino.konos", artifactId = "alexandria-jmx", version = "1.0.4")
 		Compile("io.intino.konos", "alexandria-ness-accessor", "2.4.8")
