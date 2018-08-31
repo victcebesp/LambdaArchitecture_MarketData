@@ -24,7 +24,7 @@ As previously mentioned, Tara and Intino plugins developed by SIANI have been us
 
 Lambda architectures are focused in the power of the data. That is, data is empowered and is the main asset to take care of. To this end, the core part is the datalake, a database containing all the data of an organization. This data is normally time oriented expressing the events that describe how organizational information has evolved. This datalake is then feeded by different actors entering data from sensors, forms, legacy data, etc. This data is then stored in the datalake and used by the projections (on the right in the picture above) to create the batch views (datamarts). Contrary to classic architectures, these datamarts are not relevant anymore as they can be deleted anytime and reconstructed from the events contained in the datalake. This improves the flexibility of the software developed and minimize the costs of migration.
 
-<p align="center"><img src="./readmeImages/Global.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/15388747/44918764-13679a80-ad3c-11e8-80db-2416bc50a2d5.png" alt="global view"></p>
 
 
 #### Ness
@@ -35,11 +35,11 @@ Once there are events in the tanks, Ness lets you execute a reflow. With this, y
   
 Another Ness feature is that as it uses Java Message Service (JMS), it is able to take advantage of the distributed queues. This will let the datalake scale without any problem. 
 
-<p align="center"><img src="./readmeImages/Ness.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/15388747/44918828-34c88680-ad3c-11e8-88a2-2a04bdc12650.png" alt="ness datalake"></p>
 
 #### Feeder
 
-<p align="center"><img src="./readmeImages/Feeder.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/15388747/44918847-4447cf80-ad3c-11e8-938e-00919aaa58cb.png"></p>
 
 As discussed above, a feeder responsibility is to feed Ness. To achieve this, two main steps need to be done. The first is creating the event from the legacy data, sensors or whatever by developing your own clases. Once you have the events built, you can feed the desire tank by executing the following code provided by Intino:
 
@@ -52,7 +52,7 @@ Once the mounters are declared in the box.konos file, the mounter classes are ge
 
 While all the events are received, the different projections can be built. In the end, the datamart will be produced.
 
-<p align="center"><img src="./readmeImages/Projection.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/15388747/44918872-50339180-ad3c-11e8-977f-ad9d150a1fcb.png" alt="projection"></p>
 
 * ### Project Structure
 
