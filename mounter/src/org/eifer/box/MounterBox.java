@@ -11,7 +11,6 @@ import java.util.Map;
 public class MounterBox extends AbstractBox {
 
 	public static Map<String, Report> reports = new LinkedHashMap<>();
-	public static Map<String, ActualGenerationPoint> actualGenerationPoints = new LinkedHashMap<>();
 	private MounterGraph graph;
 
 	public MounterBox(String[] args) {
