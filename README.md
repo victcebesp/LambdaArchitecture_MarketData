@@ -16,7 +16,7 @@
     
 * ### Lambda Architectures
 
-<p align="center"><img src="./readmeImages/lambda_architecture.PNG"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/15388747/44918641-ca174b00-ad3b-11e8-8d09-1e924885a2ee.PNG" alt="lambda architecture"></p>
 
 A very good explanation about what a lambda architecture is can be found in [mapr website](https://mapr.com/developercentral/lambda-architecture/).
 
