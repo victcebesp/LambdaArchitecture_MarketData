@@ -15,7 +15,8 @@
     This project has been developed as an internship at EIFER which lasted three months. The challenge is to deal with time oriented databases folowing a methodology inspired in lambda architectures. Following sections will describe what lambda architectures are and how this project has been addressed.
     
 * ### Lambda Architectures
-![Lambda architecture image](./readmeImages/lambda_architecture.PNG)
+
+<div style="text-align:center"><img src="./readmeImages/lambda_architecture.PNG"/></div>
 
 A very good explanation about what a lambda architecture is can be found in [mapr website](https://mapr.com/developercentral/lambda-architecture/).
 
