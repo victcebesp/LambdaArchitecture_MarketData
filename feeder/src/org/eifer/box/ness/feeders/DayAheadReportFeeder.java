@@ -13,4 +13,6 @@ public class DayAheadReportFeeder extends AbstractDayAheadReportFeeder {
 	}
 
 
+	pubic void ed
+
 }

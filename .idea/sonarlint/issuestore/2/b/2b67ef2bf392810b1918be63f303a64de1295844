@@ -1,0 +1,24 @@
+
+Ssquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ
+tsquid:UselessImportCheck
+"KRemove this unused import 'org.apache.activemq.advisory.DestinationSource'.(êÙÏÁüÿÿÿÿ
+Isquid:S1181"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ8Ä¡¶‡Ø,
+Asquid:S1181j"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+asquid:S2583%"CChange this condition so that it does not always evaluate to "true"(ó¾Üö8Ä¡¶‡Ø,
+vsquid:UselessImportCheck	"MRemove this unused import 'org.apache.activemq.advisory.DestinationListener'.(¦É²üøÿÿÿÿ
+csquid:UselessImportCheck":Remove this unused import 'io.intino.konos.datalake.Ness'.(ÉôµÚûÿÿÿÿ
+^squid:UnusedPrivateMethod"3Remove this unused private "isRegisterOnly" method.(Û¹ãûÿÿÿÿ
+bsquid:UselessImportCheck">Remove this unused import 'io.intino.konos.jms.TopicConsumer'.(ÜÉ¥¼
+Zsquid:S2583)"CChange this condition so that it does not always evaluate to "true"(¨øÕÒ
+Asquid:S1181W"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+Xsquid:UselessImportCheck"4Remove this unused import 'io.intino.konos.jms.Bus'.(åËÏæ
+Vsquid:S1118":Add a private constructor to hide the implicit public one.( ­Ô¶ÿÿÿÿÿ
+]squid:UselessImportCheck"9Remove this unused import 'io.intino.konos.jms.Consumer'.(Úâå“
+Zsquid:S2583'"CChange this condition so that it does not always evaluate to "true"(Æ¨æ¿
+asquid:S2583#"CChange this condition so that it does not always evaluate to "true"(±ÌÂî8Ä¡¶‡Ø,
+bsquid:UselessImportCheck">Remove this unused import 'io.intino.konos.jms.TopicProducer'.(…©ŸÀ
+isquid:UselessImportCheck"FRemove this unused import 'org.apache.activemq.command.ActiveMQTopic'.(˜¡Ò<
+Wsquid:UselessImportCheck".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ
+Hsquid:S1181}"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ8Ä¡¶‡Ø,
+hsquid:UselessImportCheck"?Remove this unused import 'org.eifer.box.MounterConfiguration'.(•ÒÛüÿÿÿÿ
+lsquid:UselessImportCheck"CRemove this unused import 'org.apache.activemq.ActiveMQConnection'.(§°§Íýÿÿÿÿ

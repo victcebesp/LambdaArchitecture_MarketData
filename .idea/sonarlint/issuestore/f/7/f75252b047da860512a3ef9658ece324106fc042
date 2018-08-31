@@ -1,0 +1,4 @@
+
+asquid:S3027"JPut single-quotes around '_' to use the faster "lastIndexOf(char)" method.(Îïßñ
+[squid:S2095"DUse try-with-resources or close this "Stream" in a "finally" clause.(ªÕŞ·
+asquid:S3027"JPut single-quotes around '.' to use the faster "lastIndexOf(char)" method.(Îïßñ

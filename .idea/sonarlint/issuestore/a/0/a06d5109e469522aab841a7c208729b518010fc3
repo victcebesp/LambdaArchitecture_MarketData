@@ -1,0 +1,8 @@
+
+—squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(æøèo
+hsquid:UselessImportCheck"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8‚Š÷Ø,
+bsquid:CommentedOutCodeLine&"<This block of commented-out lines of code should be removed.(„§ñ£
+Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8‚Š÷Ø,
+Isquid:S1135""2Complete the task associated to this TODO comment.(ú±Â‡
+Fsquid:S1148I"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‚Š÷Ø,
+\squid:UselessImportCheck"1Remove this unused import 'com.google.gson.Gson'.(–§8‚Š÷Ø,
