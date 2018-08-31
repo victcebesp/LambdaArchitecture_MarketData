@@ -34,7 +34,9 @@ Once there are events in the tanks, Ness lets you execute a reflow. With this, y
   
 Another Ness feature is that as it uses Java Message Service (JMS), it is able to take advantage of the distributed queues. This will let the datalake scale without any problem. 
 
-<div style="text-align:center"><img src="./readmeImages/Ness.png"/></div>
+<p align="center">
+  <img src="./readmeImages/Ness.png">
+</p>
 
 #### Feeder
 
