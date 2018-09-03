@@ -29,33 +29,29 @@ public class Main {
 		String username = epexAccountData.get(1);
 		String password = epexAccountData.get(2);
 
-		/*SftpClient dayAheadSftpClient = new DayAheadSftpClient("/eod/market_data/power/spot/csv/")
-				.connect(server, username, password)
+		SftpClient.connect(server, username, password);
+
+		new DayAheadSftpClient("/eod/market_data/power/spot/csv/")
 				.retrieveFilesBetween(2000, 2018);
 
-		SftpClient intradaySftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/")
-				.connect(server, username, password)
+		new IntradaySftpClient("/eod/market_data/power/spot/csv/")
 				.retrieveFilesBetween(2000, 2018);
 
-		SftpClient masterDataSftpClient = new MasterDataSftpClient("/eod/transparency_data/power/csv/masterdata_power/")
-				.connect(server, username, password)
-				.retrieveFilesBetween(2009, 2013);*/
+		new MasterDataSftpClient("/eod/transparency_data/power/csv/masterdata_power/")
+				.retrieveFilesBetween(2009, 2013);
 
-		//SftpClient actualGenerationSftpClient = new ActualGenerationSftpClient("/eod/transparency_data/power/csv/de_at/production/usage/ex_post/")
-		//		.connect(server, username, password)
-		//		.retrieveFilesBetween(2016, 2018);
+		new ActualGenerationSftpClient("/eod/transparency_data/power/csv/de_at/production/usage/ex_post/")
+				.retrieveFilesBetween(2016, 2018);
 
+		String directoryPath = box.configuration().get("directory-path");
+		new IntradayFeeder(directoryPath).feedTank();
+		new DayAheadFeeder(directoryPath).feedTank();
+		new MasterDataFeeder(directoryPath).feedTank();
+		new ActualGenerationFeeder(directoryPath).feedTank();
 
-		//String directoryPath = box.configuration().get("directory-path");
-		//new IntradayFeeder(directoryPath).feedTank();
-		//new DayAheadFeeder(directoryPath).feedTank();
-		//new MasterDataFeeder(directoryPath).feedTank();
-		//new ActualGenerationFeeder(directoryPath).feedTank();
+		SftpClient.closeConnection();
 
-		//intradaySftpClient.closeConnection();
-		//dayAheadSftpClient.closeConnection();
-		//masterDataSftpClient.closeConnection();
-		//actualGenerationSftpClient.closeConnection();
+		cottons.utils.Files.removeDir("C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData");
 
 		compressAndSortDatalake(box);
 
@@ -73,14 +69,13 @@ public class Main {
 		intradayTank.sort();
 		intradayTank.seal();
 
-		//Tank dayAheadTank = datalake.add("market.dayaheadreport");
-		//dayAheadTank.sort();
-		//dayAheadTank.seal();
+		Tank dayAheadTank = datalake.add("market.dayaheadreport");
+		dayAheadTank.sort();
+		dayAheadTank.seal();
 
-//		Tank intradayTank = datalake.add("market.eexmasterdataunit");
-//		intradayTank.sort();
-//		intradayTank.seal();
+		Tank masterdataTank = datalake.add("market.eexmasterdataunit");
+		masterdataTank.sort();
+		masterdataTank.seal();
 
 	}
 }
-//}

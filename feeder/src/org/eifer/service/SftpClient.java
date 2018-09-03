@@ -1,6 +1,5 @@
 package org.eifer.service;
 
-import cottons.utils.Files;
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.sftp.SFTPClient;
 import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
@@ -9,9 +8,9 @@ import java.io.IOException;
 
 public abstract class SftpClient {
 
-    SFTPClient client;
+    public static SFTPClient client;
 
-    public SftpClient connect(String serverIP, String username, String password) {
+    public static void connect(String serverIP, String username, String password) {
         SSHClient sshClient = new SSHClient();
         sshClient.addHostKeyVerifier(new PromiscuousVerifier());
         try {
@@ -22,11 +21,9 @@ public abstract class SftpClient {
             e.printStackTrace();
         }
 
-        return this;
     }
 
-    public void closeConnection() throws IOException {
-        Files.removeDir("C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData");
+    public static void closeConnection() throws IOException {
         client.close();
     }
 

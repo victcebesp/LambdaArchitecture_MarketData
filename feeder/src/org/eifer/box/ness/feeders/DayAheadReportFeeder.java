@@ -12,7 +12,4 @@ public class DayAheadReportFeeder extends AbstractDayAheadReportFeeder {
 		this.box = box;
 	}
 
-
-	pubic void ed
-
 }

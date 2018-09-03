@@ -25,8 +25,6 @@ public class ActualGenerationSftpClient extends SftpClient {
 
     private void retrieveDayAheadFilesFrom(String directory) throws IOException {
 
-        System.out.println(directory);
-
         List<String> daysDirectories = client.ls(directory).stream()
                 .map(RemoteResourceInfo::getPath)
                 .collect(Collectors.toList());
@@ -40,12 +38,8 @@ public class ActualGenerationSftpClient extends SftpClient {
                     .collect(Collectors.toList()));
         }
 
-
-
-        String destinyPath = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData/";
+        String destinyPath = "./tmp/marketData/";
         new File(destinyPath).mkdirs();
-
-        System.out.println(actualGenerationFilePaths.size());
 
         for (String actualGenerationFilePath : actualGenerationFilePaths)
             client.get(actualGenerationFilePath, destinyPath);

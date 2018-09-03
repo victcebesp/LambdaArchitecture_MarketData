@@ -1,15 +1,2 @@
 
-isquid:CommentedOutCodeLine7"<This block of commented-out lines of code should be removed.(ãÑ—î8»åü¢Ñ,
-_squid:S1854"<Remove this useless assignment to local variable "password".( ƒ«‰ÿÿÿÿÿ8çÌð‡Ø,
-]squid:S1854":Remove this useless assignment to local variable "server".(Éó‚Ðøÿÿÿÿ8çÌð‡Ø,
-nsquid:CommentedOutCodeLineL"<This block of commented-out lines of code should be removed.(³Ì™Õüÿÿÿÿ8ÏãúƒØ,
-isquid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(öÑ‹8çÌð‡Ø,
-Ksquid:S1481"-Remove this unused "username" local variable.(ìÓˆ¤8çÌð‡Ø,
-Nsquid:S1481"+Remove this unused "server" local variable.(Éó‚Ðøÿÿÿÿ8çÌð‡Ø,
-nsquid:CommentedOutCodeLine""<This block of commented-out lines of code should be removed.(ê’¬½üÿÿÿÿ8Æú„ƒØ,
 usquid:UselessImportCheck"ERemove this unused import 'org.eifer.market.reader.MasterDataReader'.(ŽÚ£åúÿÿÿÿ8ŸÛ¹ýÏ,
-nsquid:CommentedOutCodeLineP"<This block of commented-out lines of code should be removed.(¾†¬Äýÿÿÿÿ8•‰ÿ×,
-nsquid:CommentedOutCodeLine1"<This block of commented-out lines of code should be removed.(„Ý×ôùÿÿÿÿ8ÑÂ•öØ,
-Psquid:S1481"-Remove this unused "password" local variable.( ƒ«‰ÿÿÿÿÿ8çÌð‡Ø,
-Zsquid:S1854"<Remove this useless assignment to local variable "username".(ìÓˆ¤8çÌð‡Ø,
-nsquid:CommentedOutCodeLineV"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ÏãúƒØ,
