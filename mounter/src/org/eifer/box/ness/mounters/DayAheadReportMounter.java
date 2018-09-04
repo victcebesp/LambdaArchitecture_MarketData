@@ -21,9 +21,8 @@ public class DayAheadReportMounter {
 	}
 
 	private Report getReport(String id) {
-		Report report = MounterBox.reports.get(id);
-		if (report == null) report = new Report(dayAheadReport.ts(), dayAheadReport.priceZone());
-		return report;
+		Optional<Report> report = Optional.ofNullable(MounterBox.reports.get(id));
+		return report.orElse(new Report(dayAheadReport.ts(), dayAheadReport.priceZone()));
 	}
 
 	private String getDateAndHour(Instant instant) {
