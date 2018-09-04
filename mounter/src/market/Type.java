@@ -2,25 +2,12 @@ package market;
 
 public enum Type {
 
-    HOURLY {
-        @Override
-        public String type(){
-            return "Hour";
-        }
-    },
-    QUARTERHOURLY {
-        @Override
-        public String type(){
-            return "Quarter-Hour";
-        }
-    },
-    HALFHOURLY {
-        @Override
-        public String type(){
-            return "Half-Hour";
-        }
-    };
+    HOURLY("Hour"), QUARTERHOURLY("Quarter-Hour"), HALFHOURLY("Half-Hour");
 
-    public abstract String type();
+    private final String type;
+
+    Type (String type) {this.type = type;}
+
+    public String type(){return this.type;}
 
 }
