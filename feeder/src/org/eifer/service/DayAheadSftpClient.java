@@ -40,7 +40,7 @@ public class DayAheadSftpClient extends SftpClient {
                     .collect(Collectors.toList()));
         }
 
-        String destinyPath = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData/" + getYearFrom(directory) + '/';
+        String destinyPath = "./tmp/marketData/" + getYearFrom(directory) + '/';
         new File(destinyPath).mkdirs();
 
         for (String dayAheadFilePath : dayAheadFilePaths)

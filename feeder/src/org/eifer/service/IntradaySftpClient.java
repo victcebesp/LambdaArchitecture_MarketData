@@ -29,7 +29,7 @@ public class IntradaySftpClient extends SftpClient {
                 .filter(r -> r.contains("intraday_results_hours_"))
                 .collect(Collectors.toList());
 
-        String destinyPath = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData/" + getYearFrom(directory) + '/';
+        String destinyPath = "./tmp/marketData/" + getYearFrom(directory) + '/';
         new File(destinyPath).mkdirs();
 
         for (String intradayResultFile : intradayResultFileNames)

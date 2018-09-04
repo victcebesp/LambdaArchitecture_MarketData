@@ -8,7 +8,6 @@ public class ActualGenerationTimeParser {
 
     public Instant parseDateTimeToInstant(String timeStamp) {
         String dateTime = timeStamp.split("\\+")[0] + 'Z';
-
         String offset = timeStamp.split("\\+")[1];
         int hourToSubtract = Integer.parseInt(offset.substring(1, offset.indexOf(':')));
 

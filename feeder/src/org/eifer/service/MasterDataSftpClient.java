@@ -31,7 +31,7 @@ public class MasterDataSftpClient extends SftpClient {
                 .filter(r -> r.endsWith(".csv"))
                 .collect(Collectors.toList());
 
-        String destinyPath = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData/";
+        String destinyPath = "./tmp/marketData/";
         new File(destinyPath).mkdirs();
 
         for (String masterDataFile : masterDataFileNames)
