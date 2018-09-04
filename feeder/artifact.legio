@@ -30,5 +30,5 @@ RunConfiguration dev
 	Argument(name = "ness-user", value = "")
 	Argument(name = "ness-password", value = "")
 	Argument(name = "directory-path", value = "tmp/marketData")
-	Argument(name = "datalake-url", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/ness/datalake")
-	Argument(name = "destiny-path", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData/")
+	Argument(name = "datalake-url", value = "./tmp/ness/datalake")
+	Argument(name = "destiny-path", value = "./tmp/marketData/")
