@@ -1,10 +1,10 @@
 package org.eifer.box.ness.mounters;
 
 import org.eifer.box.MounterBox;
-import projection.Row;
 import projection.Report;
 
 import java.time.Instant;
+import java.util.Optional;
 
 public class DayAheadReportMounter {
 	public MounterBox box;
@@ -13,7 +13,6 @@ public class DayAheadReportMounter {
 	public void execute() {
 
 		String id = getDateAndHour(dayAheadReport.ts()) + dayAheadReport.priceZone();
-
 		Report report = getReport(id);
 		report.updateDayAheadFields(dayAheadReport);
 		MounterBox.reports.put(id, report);
