@@ -51,7 +51,10 @@ public class Main {
 
 		SftpClient.closeConnection();
 
-		cottons.utils.Files.removeDir("C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/marketData");
+		Files.walk(Paths.get("./tmp/marketData"))
+				.sorted(Comparator.reverseOrder())
+				.map(Path::toFile)
+				.forEach(File::delete);
 
 		compressAndSortDatalake(box);
 
