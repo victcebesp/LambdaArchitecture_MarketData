@@ -68,17 +68,11 @@ public class Main {
 		datalake.directory(new File(box.configuration.get("datalake-url")));
 		datalake.scale(Scale.Day);
 
-		Tank intradayTank = datalake.add("market.eexmasterdataunit");
-		intradayTank.sort();
-		intradayTank.seal();
-
-		Tank dayAheadTank = datalake.add("market.dayaheadreport");
-		dayAheadTank.sort();
-		dayAheadTank.seal();
-
-		Tank masterdataTank = datalake.add("market.eexmasterdataunit");
-		masterdataTank.sort();
-		masterdataTank.seal();
+		TanksConnectors.all().stream().map(Datalake.Tank::name).forEach(e -> {
+			Tank tank = datalake.add(e);
+			tank.sort();
+			tank.seal();
+		});
 
 	}
 }
