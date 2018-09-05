@@ -2,4 +2,3 @@
 }"squid:ClassVariableVisibilityCheck
 "OMake box a static final constant or non-public and provide accessors if needed.(¥Úñä
 ˆ"squid:ClassVariableVisibilityCheck"ZMake dayAheadReport a static final constant or non-public and provide accessors if needed.(ß¼Í·
-Osquid:UselessImportCheck"+Remove this unused import 'projection.Row'.(ïÒÐÈ

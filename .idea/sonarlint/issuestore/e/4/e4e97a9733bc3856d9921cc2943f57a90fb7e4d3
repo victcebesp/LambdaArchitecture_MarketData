@@ -1,4 +1,4 @@
 
 `squid:UselessImportCheck"<Remove this unused import 'io.intino.konos.datalake.Feeder'.(‡°ŽŠ
-bsquid:UselessImportCheck
-"2Remove this unused import 'java.util.Collections'.(¢³ïÓþÿÿÿÿ8šš´ÿÙ,
+[squid:UselessImportCheck
+"2Remove this unused import 'java.util.Collections'.(¢³ïÓþÿÿÿÿ

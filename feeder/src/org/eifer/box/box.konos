@@ -1,13 +1,10 @@
 dsl Konos
 
 Client(mode = Normal) as Ness (url = "{ness-url}", user = "{ness-user}", password = "{ness-password}", domain = "market", clientID = "")
-	Feeder(eventTypes = dayAheadReport) dayAheadReport
-	Feeder(eventTypes = intradayReport) intradayReport
-	Feeder(eventTypes = eexMasterDataUnit) eexMasterDataUnit
-	Feeder(eventTypes = actualGeneration) actualGeneration
-
-
-
+	Feeder(eventTypes = dayAheadReport) dayAheadFeeder
+	Feeder(eventTypes = intradayReport) intradayFeeder
+	Feeder(eventTypes = eexMasterDataUnit) masterDataFeeder
+	Feeder(eventTypes = actualGeneration) actualGenerationFeeder
 
 Schema dayAheadReport
 	Attribute ts as DateTime

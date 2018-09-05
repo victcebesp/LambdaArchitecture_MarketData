@@ -1,2 +1,4 @@
 
-usquid:UselessImportCheck"ERemove this unused import 'org.eifer.market.reader.MasterDataReader'.(Ú£åúÿÿÿÿ8ŸÛ¹ıÏ,
+vsquid:UselessImportCheck"KRemove this unused import 'org.eifer.market.feeder.ActualGenerationFeeder'.(¦äÈ‚8¥Ùé¨Ú,
+nsquid:UselessImportCheck"CRemove this unused import 'org.eifer.market.feeder.DayAheadFeeder'.(ÜõãÀ8Ê¸é¨Ú,
+psquid:UselessImportCheck"ERemove this unused import 'org.eifer.market.feeder.MasterDataFeeder'.(ÛÇÊ÷8¥Ùé¨Ú,

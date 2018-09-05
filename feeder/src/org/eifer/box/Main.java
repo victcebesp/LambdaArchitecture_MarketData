@@ -1,21 +1,24 @@
 package org.eifer.box;
 
+import io.intino.konos.datalake.Datalake;
 import io.intino.ness.datalake.Scale;
 import io.intino.ness.datalake.graph.DatalakeGraph;
 import io.intino.ness.datalake.graph.Tank;
 import io.intino.tara.magritte.Graph;
-import org.eifer.market.feeder.ActualGenerationFeeder;
-import org.eifer.market.feeder.DayAheadFeeder;
-import org.eifer.market.feeder.IntradayFeeder;
-import org.eifer.market.feeder.MasterDataFeeder;
-import org.eifer.market.reader.MasterDataReader;
+import org.eifer.box.ness.TanksConnectors;
+import org.eifer.box.ness.feeders.ActualGenerationFeederFeeder;
+import org.eifer.box.ness.feeders.DayAheadFeederFeeder;
+import org.eifer.box.ness.feeders.IntradayFeederFeeder;
+import org.eifer.box.ness.feeders.MasterDataFeederFeeder;
 import org.eifer.service.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Comparator;
+import java.util.List;	
 
 public class Main {
 
@@ -43,11 +46,10 @@ public class Main {
 		new ActualGenerationSftpClient("/eod/transparency_data/power/csv/de_at/production/usage/ex_post/")
 				.retrieveFilesBetween(2016, 2018);
 
-		String directoryPath = box.configuration().get("directory-path");
-		new IntradayFeeder(directoryPath).feedTank();
-		new DayAheadFeeder(directoryPath).feedTank();
-		new MasterDataFeeder(directoryPath).feedTank();
-		new ActualGenerationFeeder(directoryPath).feedTank();
+		new IntradayFeederFeeder(box).feedTank();
+		new DayAheadFeederFeeder(box).feedTank();
+		new MasterDataFeederFeeder(box).feedTank();
+		new ActualGenerationFeederFeeder(box).feedTank();
 
 		SftpClient.closeConnection();
 
