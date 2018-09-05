@@ -25,7 +25,7 @@ public abstract class AbstractBox extends io.intino.konos.alexandria.Box {
 	}
 
 	public MounterConfiguration configuration() {
-		return (MounterConfiguration) configuration;
+		return configuration;
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public abstract class AbstractBox extends io.intino.konos.alexandria.Box {
 	}
 
 	public io.intino.konos.alexandria.Box open() {
-		if(owner != null) owner.open();
+		if (owner != null) owner.open();
 		initLogger();
 		initUI();
 		initRESTServices();
@@ -61,18 +61,13 @@ public abstract class AbstractBox extends io.intino.konos.alexandria.Box {
 		return this.ness;
 	}
 
-	public org.eifer.box.ness.TanksConnectors feeders() {
-		return new org.eifer.box.ness.TanksConnectors();
+	public io.intino.konos.datalake.Feeders feeders() {
+		return io.intino.konos.datalake.Feeders.get();
 	}
 
-	public org.eifer.box.ness.TanksConnectors mounters() {
-		return new org.eifer.box.ness.TanksConnectors();
-	}
+	public void registerFeeders() {
 
-	public org.eifer.box.ness.TanksConnectors processes() {
-		return new org.eifer.box.ness.TanksConnectors();
 	}
-
 
 
 	private void initRESTServices() {
@@ -101,9 +96,9 @@ public abstract class AbstractBox extends io.intino.konos.alexandria.Box {
 		java.lang.Thread thread = new java.lang.Thread(() -> {
 			this.ness.connect("");
 			org.eifer.box.ness.TanksConnectors.registerTanks((MounterBox) this);
-
+			registerFeeders();
 			org.eifer.box.ness.NessOperations.init((MounterBox) this);
-			logger.info("Ness connection: started!");
+			if (this.ness.session() != null) logger.info("Ness connection: started!");
 		}, "ness init");
 		try {
 			thread.start();

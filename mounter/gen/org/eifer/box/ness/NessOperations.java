@@ -8,8 +8,8 @@ import io.intino.tara.magritte.Graph;
 import io.intino.tara.magritte.RemounterGraph;
 import io.intino.tara.magritte.stores.FileSystemStore;
 import org.apache.commons.io.FileUtils;
-import org.eifer.box.ness.TanksConnectors;
 import org.eifer.box.MounterBox;
+import org.eifer.box.ness.TanksConnectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,7 +112,7 @@ public class NessOperations implements NessOperationsMBean {
 
 
 	public static JMXServer init(MounterBox box) {
-		JMXServer server = new JMXServer(Collections.singletonMap("io.intino.cesar.box.ness.NessOperations", new Object[]{box}));
+		JMXServer server = new JMXServer(Collections.singletonMap("org.eifer.box.ness.NessOperations", new Object[]{box}));
 		server.init();
 		return server;
 	}
