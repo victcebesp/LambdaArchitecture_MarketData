@@ -13,7 +13,6 @@ import org.eifer.box.ness.feeders.MasterDataFeederFeeder;
 import org.eifer.service.*;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,10 +27,9 @@ public class Main {
 		FeederBox box = new FeederBox(args);
 		box.open();
 
-        String propertiesPath = Thread.currentThread().getContextClassLoader().getResource("epex.properties").getPath();
 
         Properties epexProperties = new Properties();
-        epexProperties.load(new FileInputStream(propertiesPath));
+        epexProperties.load(Main.class.getResourceAsStream("/epex.properties"));
         String server = epexProperties.getProperty("server");
         String username = epexProperties.getProperty("username");
         String password = epexProperties.getProperty("password");
