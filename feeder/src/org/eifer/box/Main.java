@@ -28,7 +28,7 @@ public class Main {
 		FeederBox box = new FeederBox(args);
 		box.open();
 
-        String propertiesPath = "./feeder/res/epex.properties";
+        String propertiesPath = Thread.currentThread().getContextClassLoader().getResource("epex.properties").getPath();
 
         Properties epexProperties = new Properties();
         epexProperties.load(new FileInputStream(propertiesPath));

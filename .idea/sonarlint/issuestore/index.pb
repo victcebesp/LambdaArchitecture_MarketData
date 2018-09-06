@@ -125,3 +125,5 @@ w
 Gfeeder/src/org/eifer/box/ness/feeders/ActualGenerationFeederFeeder.java,a\6\a66319baa07baff0a38350217bb82dc2df88dea0
 o
 ?feeder/src/org/eifer/box/ness/feeders/DayAheadFeederFeeder.java,5\0\50f6ef12456f449233011535d0fa80b2e3cc952b
+J
+feeder/res/epex.properties,1\c\1c8f9875605265f238552978aba876852d498c1e
