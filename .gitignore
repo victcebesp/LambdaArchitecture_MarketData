@@ -35,3 +35,4 @@ widgets.html
 Project.xml
 /tmp
 epex_account_data.txt
+feeder/res/epex.properties

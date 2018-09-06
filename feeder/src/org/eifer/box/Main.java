@@ -13,12 +13,13 @@ import org.eifer.box.ness.feeders.MasterDataFeederFeeder;
 import org.eifer.service.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
-import java.util.List;	
+import java.util.Properties;
 
 public class Main {
 
@@ -27,10 +28,13 @@ public class Main {
 		FeederBox box = new FeederBox(args);
 		box.open();
 
-		List<String> epexAccountData = Files.readAllLines(Paths.get("./feeder/epex_account_data.txt"));
-		String server = epexAccountData.get(0);
-		String username = epexAccountData.get(1);
-		String password = epexAccountData.get(2);
+        String propertiesPath = "./feeder/res/epex.properties";
+
+        Properties epexProperties = new Properties();
+        epexProperties.load(new FileInputStream(propertiesPath));
+        String server = epexProperties.getProperty("server");
+        String username = epexProperties.getProperty("username");
+        String password = epexProperties.getProperty("password");
 
 		SftpClient.connect(server, username, password);
 
