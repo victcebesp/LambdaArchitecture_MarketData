@@ -4,12 +4,14 @@ import com.google.gson.Gson;
 import io.intino.konos.datalake.Datalake;
 import io.intino.tara.magritte.Graph;
 import org.eifer.box.MounterBox;
+import org.eifer.graph.MounterGraph;
 import projection.ReportExporter;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,27 +53,26 @@ class ReflowAssistant {
 
 		String path = box.configuration().get("csv_store");
 		String csvHeading = "price zone;date;from;to;type;day-ahead price;day-ahead volume;continuous weighted volume;continuous ID3\n";
-		StringBuilder germanyAustriaCSV = new StringBuilder(csvHeading);
-		StringBuilder switzerlandCSV = new StringBuilder(csvHeading);
-		StringBuilder franceCSV = new StringBuilder(csvHeading);
 
-		germanyAustriaCSV.append(ReportExporter.mapReportStreamToString(MounterBox.reports.entrySet().stream()
-				.filter(e -> e.getValue().priceZone().equals("DE-AT"))));
+		Map<String, StringBuilder> pricezoneRecordsMap = new HashMap<>();
 
-		switzerlandCSV.append(ReportExporter.mapReportStreamToString(MounterBox.reports.entrySet().stream()
-				.filter(e -> e.getValue().priceZone().equals("CH"))));
+		MounterBox.reports.forEach((key, value) -> {
 
-		franceCSV.append(ReportExporter.mapReportStreamToString(MounterBox.reports.entrySet().stream()
-				.filter(e -> e.getValue().priceZone().equals("FR"))));
+			StringBuilder priceZoneCsvText = pricezoneRecordsMap.getOrDefault(value.priceZone(), new StringBuilder(csvHeading));
+			priceZoneCsvText.append(ReportExporter.exportToCsv(value));
+			pricezoneRecordsMap.put(value.priceZone(), priceZoneCsvText);
+		});
 
-		try {
-			new File(path).mkdirs();
-			Files.write(Paths.get(path + "/DE-AT_view.csv"), germanyAustriaCSV.toString().getBytes());
-			Files.write(Paths.get(path + "/CH_view.csv"), switzerlandCSV.toString().getBytes());
-			Files.write(Paths.get(path + "/FR_view.csv"), franceCSV.toString().getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		new File(path).mkdirs();
+
+		pricezoneRecordsMap.forEach((key, value) -> {
+			try {
+				Files.write(Paths.get(path + "/" + key + "_view.csv"), value.toString().getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+
 	}
 
 

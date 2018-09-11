@@ -11,13 +11,7 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class ReportExporter {
 
-    public static String mapReportStreamToString(Stream<Map.Entry<String, Report>> reports){
-        return reports.map(Map.Entry::getValue)
-                .map(ReportExporter::exportToCsv)
-                .collect(Collectors.joining());
-    }
-
-    private static String exportToCsv(Report report) {
+    public static String exportToCsv(Report report) {
         return quarterHoursToCSV(report) + halfHoursToCSV(report) + hourToCSV(report);
     }
 
