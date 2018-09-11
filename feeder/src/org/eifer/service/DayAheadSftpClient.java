@@ -13,8 +13,9 @@ public class DayAheadSftpClient extends SftpClient {
 
     private final String directoriesPath;
 
-    public DayAheadSftpClient(String directoriesPath) {
+    public DayAheadSftpClient(String directoriesPath, String destinyPath) {
         this.directoriesPath = directoriesPath;
+        this.destinyPath = destinyPath;
     }
 
     @Override
@@ -40,11 +41,11 @@ public class DayAheadSftpClient extends SftpClient {
                     .collect(Collectors.toList()));
         }
 
-        String destinyPath = "./tmp/marketData/" + getYearFrom(directory) + '/';
-        new File(destinyPath).mkdirs();
+        String path = destinyPath + getYearFrom(directory) + '/';
+        new File(path).mkdirs();
 
         for (String dayAheadFilePath : dayAheadFilePaths)
-            client.get(dayAheadFilePath, destinyPath + getFileName(dayAheadFilePath));
+            client.get(dayAheadFilePath, path + getFileName(dayAheadFilePath));
     }
 
     private String getFileName(String dayAheadFilePath) {

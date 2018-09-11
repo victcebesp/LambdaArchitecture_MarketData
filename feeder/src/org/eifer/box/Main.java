@@ -27,7 +27,6 @@ public class Main {
 		FeederBox box = new FeederBox(args);
 		box.open();
 
-
         Properties epexProperties = new Properties();
         epexProperties.load(Main.class.getResourceAsStream("/epex.properties"));
         String server = epexProperties.getProperty("server");
@@ -36,16 +35,18 @@ public class Main {
 
 		SftpClient.connect(server, username, password);
 
-		new DayAheadSftpClient("/eod/market_data/power/spot/csv/")
+		String destinyPath = box.configuration().get("destiny-path");
+
+		new DayAheadSftpClient("/eod/market_data/power/spot/csv/", destinyPath)
 				.retrieveFilesBetween(2000, 2018);
 
-		new IntradaySftpClient("/eod/market_data/power/spot/csv/")
+		new IntradaySftpClient("/eod/market_data/power/spot/csv/", destinyPath)
 				.retrieveFilesBetween(2000, 2018);
 
-		new MasterDataSftpClient("/eod/transparency_data/power/csv/masterdata_power/")
+		new MasterDataSftpClient("/eod/transparency_data/power/csv/masterdata_power/", destinyPath)
 				.retrieveFilesBetween(2009, 2013);
 
-		new ActualGenerationSftpClient("/eod/transparency_data/power/csv/de_at/production/usage/ex_post/")
+		new ActualGenerationSftpClient("/eod/transparency_data/power/csv/de_at/production/usage/ex_post/", destinyPath)
 				.retrieveFilesBetween(2016, 2018);
 
 		new IntradayFeederFeeder(box).feedTank();

@@ -13,7 +13,7 @@ public class SftpClientShould {
     @Test
     public void given_2018_server_path_when_all_files_retrieved_place_three_files_in_intradayData_directory() throws IOException {
 
-        SftpClient sftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/");
+        SftpClient sftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/", "./tmp/marketData");
         sftpClient.connect("85.239.110.71", "jan.eberbach_at_eifer.uni-karlsruhe.de", "EIFeex265");
         sftpClient.retrieveFilesBetween(2018, 2018);
 
@@ -26,7 +26,7 @@ public class SftpClientShould {
     @Test
     public void given_2017_and_2018_server_path_when_all_files_retrieved_place_six_files_in_intradayData_directory() throws IOException {
 
-        SftpClient sftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/");
+        SftpClient sftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/", "./tmp/marketData");
         sftpClient.connect("85.239.110.71", "jan.eberbach_at_eifer.uni-karlsruhe.de", "EIFeex265");
         sftpClient.retrieveFilesBetween(2017, 2018);
 
@@ -42,7 +42,7 @@ public class SftpClientShould {
     @Test
     public void given_from_2015_until_2018_server_path_when_all_files_retrieved_place_twelve_files_in_intradayData_directory() throws IOException {
 
-        SftpClient sftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/");
+        SftpClient sftpClient = new IntradaySftpClient("/eod/market_data/power/spot/csv/", "./tmp/marketData");
         sftpClient.connect("85.239.110.71", "jan.eberbach_at_eifer.uni-karlsruhe.de", "EIFeex265");
         sftpClient.retrieveFilesBetween(2015, 2018);
 

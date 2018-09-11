@@ -11,8 +11,9 @@ public class IntradaySftpClient extends SftpClient {
 
     private final String directoriesPath;
 
-    public IntradaySftpClient(String directoriesPath) {
+    public IntradaySftpClient(String directoriesPath, String destinyPath) {
         this.directoriesPath = directoriesPath;
+        this.destinyPath = destinyPath;
     }
 
     @Override
@@ -29,11 +30,11 @@ public class IntradaySftpClient extends SftpClient {
                 .filter(r -> r.contains("intraday_results_hours_"))
                 .collect(Collectors.toList());
 
-        String destinyPath = "./tmp/marketData/" + getYearFrom(directory) + '/';
-        new File(destinyPath).mkdirs();
+        String destiny = destinyPath + getYearFrom(directory) + '/';
+        new File(destiny).mkdirs();
 
         for (String intradayResultFile : intradayResultFileNames)
-            client.get(directory + intradayResultFile, destinyPath + intradayResultFile);
+            client.get(directory + intradayResultFile, destiny + intradayResultFile);
     }
 
     private String getYearFrom(String path) {

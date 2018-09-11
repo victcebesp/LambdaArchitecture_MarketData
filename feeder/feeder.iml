@@ -42,7 +42,7 @@
     <orderEntry type="library" name="Legio: io.intino.konos:alexandria-jms:1.0.15" level="project" />
     <orderEntry type="library" name="Legio: io.intino.konos:alexandria-core:1.0.4" level="project" />
     <orderEntry type="library" name="Legio: io.intino.ness:inl:1.1.1" level="project" />
-    <orderEntry type="library" name="Legio: io.intino.ness:datalake:1.1.4" level="project" />
+    <orderEntry type="library" name="Legio: io.intino.ness:datalake:1.1.5" level="project" />
   </component>
   <component name="sonarModuleSettings">
     <option name="localAnalysisScripName" value="&lt;PROJECT&gt;" />

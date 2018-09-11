@@ -9,6 +9,7 @@ import java.io.IOException;
 public abstract class SftpClient {
 
     public static SFTPClient client;
+    protected String destinyPath;
 
     public static void connect(String serverIP, String username, String password) {
         SSHClient sshClient = new SSHClient();

@@ -12,8 +12,9 @@ public class ActualGenerationSftpClient extends SftpClient {
 
     private final String directoriesPath;
 
-    public ActualGenerationSftpClient(String directoriesPath) {
+    public ActualGenerationSftpClient(String directoriesPath, String destinyPath) {
         this.directoriesPath = directoriesPath;
+        this.destinyPath = destinyPath;
     }
 
     @Override
@@ -38,7 +39,6 @@ public class ActualGenerationSftpClient extends SftpClient {
                     .collect(Collectors.toList()));
         }
 
-        String destinyPath = "./tmp/marketData/";
         new File(destinyPath).mkdirs();
 
         for (String actualGenerationFilePath : actualGenerationFilePaths)
