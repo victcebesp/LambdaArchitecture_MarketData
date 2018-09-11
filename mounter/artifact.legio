@@ -19,7 +19,6 @@ Artifact(groupId = "org.eifer", version = "1.0.0") mounter as Product
 	Parameter(name = "port", defaultValue = "9000")
 	Parameter(name = "graph_store", defaultValue = "")
 	Parameter(name = "csv_store", defaultValue = "")
-	Parameter(name = "json_store", defaultValue = "")
 
 Repository(identifier = "intino-maven")
 	Language(url = "https://artifactory.intino.io/artifactory/releases")
@@ -30,5 +29,4 @@ RunConfiguration dev
 	Argument(name = "ness-user", value = "")
 	Argument(name = "ness-password", value = "")
 	Argument(name = "graph_store", value = "file://tmp/graph")
-	Argument(name = "csv_store", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/csv")
-	Argument(name = "json_store", value = "C:/Users/ceballos/IdeaProjects/EnergyMarket/tmp/json/")
+	Argument(name = "csv_store", value = "./tmp/csv")
