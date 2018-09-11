@@ -1,5 +1,5 @@
 
 bsquid:S3027"FPut single-quotes around ':' to use the faster "indexOf(char)" method.(¯ñÍÆùÿÿÿÿ
-}"squid:ClassVariableVisibilityCheck	"OMake box a static final constant or non-public and provide accessors if needed.(¥Úñä
 ˆ"squid:ClassVariableVisibilityCheck
 "ZMake intradayReport a static final constant or non-public and provide accessors if needed.(–àâ
+}"squid:ClassVariableVisibilityCheck	"OMake box a static final constant or non-public and provide accessors if needed.(¥Úñä

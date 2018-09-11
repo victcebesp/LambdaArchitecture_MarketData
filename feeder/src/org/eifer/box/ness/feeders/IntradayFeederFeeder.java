@@ -30,9 +30,14 @@ public class IntradayFeederFeeder extends AbstractIntradayFeederFeeder {
 
 	private String getPrizeZone(String path) {
 
-		if(path.contains("germany_austria")) return "DE-AT";
-		if(path.contains("switzerland")) return "CH";
-		else return "FR";
+		String pricezone = ""; //DEAT
+
+		if(path.contains("germany")) pricezone += "DE-";
+		if(path.contains("austria")) pricezone += "AT-";
+		if(path.contains("switzerland")) pricezone += "CH-";
+		else pricezone += "FR-";
+
+		return pricezone.substring(0, pricezone.length() - 1);
 	}
 
 }
