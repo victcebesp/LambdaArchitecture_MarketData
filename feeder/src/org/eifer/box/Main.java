@@ -56,7 +56,7 @@ public class Main {
 
 		SftpClient.closeConnection();
 
-		Files.walk(Paths.get("./tmp/marketData"))
+		Files.walk(Paths.get(destinyPath))
 				.sorted(Comparator.reverseOrder())
 				.map(Path::toFile)
 				.forEach(File::delete);
